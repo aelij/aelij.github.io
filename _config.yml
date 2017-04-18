@@ -1,0 +1,27 @@
+title: I Got Rhythm
+email: aelij@arbel.net
+description: A blog by Eli (Aelij) Arbel
+url: "https://arbel.net"
+
+encoding: utf-8
+
+twitter_username: aelij
+github_username: aelij
+linkedin_username: aelij
+
+highlighter: rouge
+markdown: kramdown
+excerpt_separator: "\n\n"
+
+permalink: /:year/:month/:day/:title/
+paginate: 15
+
+safe: true
+lsi: false
+exclude: [.gitignore, CNAME, README.md, LICENSE, maketags.ps1]
+
+gems:
+   - jekyll-mentions
+   - jekyll-redirect-from
+   - jekyll-feed
+

@@ -1,0 +1,1110 @@
+/* SWI-Prolog Interface for .NET
+ * 
+ * Written by Uwe Lesta, SBS-Softwaresysteme 2003
+ * Modified by Aelij Arbel, 2004
+ */
+
+using System;
+
+namespace Swi
+{
+    #region Private Wraper Class for libpl.dll
+    using System.Runtime.InteropServices;
+    /// <summary>
+    /// This is a port of the C++ interface (SWI-cpp.h) from Jan Wielemaker
+    /// to CSharp. The interface to the native prolog interface (SWI.Prolog.h)
+    /// is in class libpl.
+    /// Note: Make sure 'DllFileName' points to the right location.
+    /// </summary>
+    class LibPl
+    {
+        private const string DllFileName = @"LibPl.dll";
+
+        public const int PL_Q_NORMAL = 0x02;
+        public const int PL_Q_NODEBUG = 0x04;
+        public const int PL_Q_CATCH_EXCEPTION = 0x08;
+        public const int PL_Q_PASS_EXCEPTION = 0x10;
+        /*******************************
+		 *	    CHAR BUFFERS	*
+		 *******************************/
+        public const int CVT_ATOM = 0x0001;
+        public const int CVT_STRING = 0x0002;
+        public const int CVT_LIST = 0x0004;
+        public const int CVT_INTEGER = 0x0008;
+        public const int CVT_FLOAT = 0x0010;
+        public const int CVT_VARIABLE = 0x0020;
+        public const int CVT_NUMBER = (CVT_INTEGER | CVT_FLOAT);
+        public const int CVT_ATOMIC = (CVT_NUMBER | CVT_ATOM | CVT_STRING);
+        public const int CVT_WRITE = 0x0040;		// as of version 3.2.10
+        public const int CVT_ALL = (CVT_ATOMIC | CVT_LIST);
+        public const int CVT_MASK = 0x00ff;
+
+        public const int BUF_DISCARDABLE = 0x0000;
+        public const int BUF_RING = 0x0100;
+        public const int BUF_MALLOC = 0x0200;
+
+        //	 ENGINES (MT-ONLY)
+        public const int PL_ENGINE_MAIN = 0x1;			//	  ((PL_engine_t)0x1)
+        public const int PL_ENGINE_CURRENT = 0x2;		// ((PL_engine_t)0x2)
+
+        public const int PL_ENGINE_SET = 0;			// engine set successfully 
+        public const int PL_ENGINE_INVAL = 2;			// engine doesn't exist
+        public const int PL_ENGINE_INUSE = 3;			// engine is in use 
+
+
+
+        public LibPl()
+        {   // TODO: Add constructor logic here
+        }
+        ~LibPl()
+        {
+            LibPl.PL_cleanup(0);
+        }
+
+        [DllImport(DllFileName)]
+        internal static extern int PL_initialise(int argc, String[] argv);
+        [DllImport(DllFileName)]
+        // PL_EXPORT(int)		PL_is_initialised(int *argc, char ***argv);
+        internal static extern int PL_is_initialised([In, Out] ref int argc, [In, Out] ref String[] argv);
+        [DllImport(DllFileName)]
+        internal static extern int PL_is_initialised(IntPtr argc, IntPtr argv);
+        [DllImport(DllFileName)]
+        internal static extern int PL_halt(int i);
+        [DllImport(DllFileName)]
+        internal static extern int PL_cleanup(int status);
+
+
+        //	 ENGINES (MT-ONLY)
+        // TYPES :  PL_engine_t			-> void *
+        //			PL_thread_attr_t	-> struct
+        [DllImport(DllFileName)]
+        // PL_EXPORT(PL_engine_t)	PL_create_engine(PL_thread_attr_t *attributes);
+        internal static extern IntPtr PL_create_engine(IntPtr attr);
+        [DllImport(DllFileName)]	// PL_EXPORT(int)		PL_set_engine(PL_engine_t engine, PL_engine_t *old);
+        internal static extern int PL_set_engine(IntPtr engine, [In, Out] ref IntPtr old);
+        [DllImport(DllFileName)]	// PL_EXPORT(int)		PL_destroy_engine(PL_engine_t engine);
+        internal static extern int PL_destroy_engine(IntPtr engine);
+
+
+        [DllImport(DllFileName)]
+        internal static extern uint PL_new_atom(string text);
+        [DllImport(DllFileName)] // return const char *
+        internal static extern string PL_atom_chars(uint t_atom);
+        // PlFrame
+        [DllImport(DllFileName)]
+        internal static extern uint PL_open_foreign_frame();
+        [DllImport(DllFileName)]
+        internal static extern void PL_close_foreign_frame(uint fid_t);
+        [DllImport(DllFileName)]
+        internal static extern void PL_rewind_foreign_frame(uint fid_t);
+        // PlQuery
+        [DllImport(DllFileName)]
+        internal static extern int PL_next_solution(uint qid_t);
+        [DllImport(DllFileName)]
+        internal static extern IntPtr PL_predicate(string name, int arity, string module);
+        [DllImport(DllFileName)]
+        //qid_t PL_open_query(module_t m, int flags, predicate_t pred, term_t t0);
+        internal static extern uint PL_open_query(IntPtr module, int flags, IntPtr pred, uint term);
+        [DllImport(DllFileName)]
+        internal static extern void PL_cut_query(uint qid);
+
+        // PlTerm
+        [DllImport(DllFileName)] // return term_t
+        internal static extern void PL_put_atom_chars(uint term, string chars);
+        //__pl_export term_t	PL_new_term_ref(void);
+        [DllImport(DllFileName)] // return term_t
+        internal static extern uint PL_new_term_ref();
+        //__pl_export void	PL_put_integer(term_t t, long i);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_integer(uint term, int i);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_float(uint term, double i);
+        // __pl_export void	PL_put_atom(term_t t, atom_t a);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_atom(uint term, uint atom_handle);
+        // __pl_export int		PL_get_chars(term_t t, char **s, unsigned int flags);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_chars(uint term, ref string s, uint flags);
+        // __pl_export int		PL_get_long(term_t t, long *i);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_long(uint term, [In, Out] ref int i);
+        // __pl_export int		PL_get_float(term_t t, double *f);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_float(uint term, [In, Out] ref double i);
+        // __pl_export int		PL_get_atom(term_t t, atom_t *a);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_atom(uint term, [In, Out] ref uint atom_t);
+        //__pl_export int		PL_term_type(term_t t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_term_type(uint t);
+
+        // COMPARE
+        //__pl_export int		PL_compare(term_t t1, term_t t2);
+        [DllImport(DllFileName)]
+        internal static extern int PL_compare(uint term1, uint term2);
+
+
+
+        // PlTermv
+        [DllImport(DllFileName)] // return term_t
+        internal static extern uint PL_new_term_refs(int n);
+        //__pl_export void	PL_put_term(term_t t1, term_t t2);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_term(uint t1, uint t2);
+
+        // PlCompound
+        // __pl_export int PL_chars_to_term(const char *chars, term_t term);
+        //__pl_export void	PL_cons_functor_v(term_t h, functor_t fd, term_t a0);
+        //__pl_export functor_t	PL_new_functor(atom_t f, int a);
+        [DllImport(DllFileName)]
+        internal static extern int PL_chars_to_term(string chars, uint term);
+        [DllImport(DllFileName)]
+        internal static extern void PL_cons_functor_v(uint term, uint functor_t, uint term_a0);
+        [DllImport(DllFileName)]
+        internal static extern uint PL_new_functor(uint atom_a, int a);
+
+        //__pl_export void	PL_put_string_chars(term_t t, const char *chars);
+        //__pl_export void	PL_put_string_nchars(term_t t, unsigned int len, const char *chars);
+        //__pl_export void	PL_put_list_codes(term_t t, const char *chars);
+        //__pl_export void	PL_put_list_chars(term_t t, const char *chars);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_string_chars(uint term_t, string chars);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_string_nchars(uint term_t, int len, string chars);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_list_codes(uint term_t, string chars);
+        [DllImport(DllFileName)]
+        internal static extern void PL_put_list_chars(uint term_t, string chars);
+
+        // LISTS (PlTail)
+        //__pl_export int		PL_is_variable(term_t t);
+        //__pl_export int		PL_is_list(term_t t);
+        //__pl_export term_t	PL_copy_term_ref(term_t from);
+        //__pl_export int		PL_unify_list(term_t l, term_t h, term_t t);
+        //__pl_export int		PL_unify_nil(term_t l);
+        //__pl_export int		PL_get_list(term_t l, term_t h, term_t t);
+        //__pl_export int		PL_get_nil(term_t l);
+        // __pl_export int		PL_unify(term_t t1, term_t t2);
+        [DllImport(DllFileName)]
+        internal static extern int PL_is_variable(uint term_t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_is_list(uint term_t);
+        [DllImport(DllFileName)]
+        internal static extern uint PL_copy_term_ref(uint term_t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_unify_list(uint term_t_l, uint term_t_h, uint term_t_t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_unify_nil(uint term_t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_list(uint term_t_l, uint term_t_h, uint term_t_t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_nil(uint term_t);
+        [DllImport(DllFileName)]
+        internal static extern int PL_unify(uint t1, uint t2);
+        [DllImport(DllFileName)]
+        internal static extern int PL_unify_integer(uint t1, Int32 n);
+
+
+
+        // Exceptions
+        // Handling exceptions
+        //__pl_export term_t	PL_exception(qid_t qid);
+        //__pl_export int		PL_raise_exception(term_t exception);
+        //__pl_export int		PL_throw(term_t exception);
+        [DllImport(DllFileName)]
+        internal static extern uint PL_exception(uint qid);
+        [DllImport(DllFileName)]
+        internal static extern int PL_raise_exception(uint exception_term);
+        //__pl_export int		PL_get_arg(int index, term_t t, term_t a);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_arg(int index, uint t, uint a);
+        //__pl_export int		PL_get_name_arity(term_t t, atom_t *name, int *arity);
+        [DllImport(DllFileName)]
+        internal static extern int PL_get_name_arity(uint t, ref uint name, ref int arity);
+
+        // ******************************
+        // *	  PROLOG THREADS		*
+        // ******************************
+
+        // from file pl-itf.h
+        /*
+		typedef struct
+				{
+					unsigned long	    local_size;		// Stack sizes
+					unsigned long	    global_size;
+					unsigned long	    trail_size;
+					unsigned long	    argument_size;
+					char *	    alias;					// alias name
+				} PL_thread_attr_t;
+		*/
+        //PL_EXPORT(int)	PL_thread_self(void);	/* Prolog thread id (-1 if none) */
+        //PL_EXPORT(int)	PL_thread_attach_engine(PL_thread_attr_t *attr);
+        //PL_EXPORT(int)	PL_thread_destroy_engine(void);
+        //PL_EXPORT(int)	PL_thread_at_exit(void (*function)(void *), void *closure, int global);
+        [DllImport(DllFileName)]
+        internal static extern int PL_thread_self();
+        [DllImport(DllFileName)]
+        internal static extern int PL_thread_attach_engine(IntPtr attr);
+        //internal static extern int PL_thread_attach_engine(ref PL_thread_attr_t attr);
+        [DllImport(DllFileName)]
+        internal static extern int PL_thread_destroy_engine();
+
+
+    }
+    #endregion
+
+    #region PrologAtom
+    public class PrologAtom
+    {
+        public uint handle; // t_atom
+
+        PrologAtom(uint h)
+        {
+            handle = h;
+        }
+
+        public PrologAtom(string text) // const
+        {
+            handle = LibPl.PL_new_atom(text);
+        }
+
+        //public operator const char *(void)
+        public static explicit operator string(PrologAtom a)
+        {
+            return LibPl.PL_atom_chars(a.handle);
+        }
+
+        override public string ToString()
+        {
+            return LibPl.PL_atom_chars(handle);
+        }
+
+        // operator == for PrologAtom and string
+        public override int GetHashCode()
+        {
+            return this.handle.GetHashCode();
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj is PrologAtom)
+                return this.handle == ((PrologAtom)obj).handle;
+            else if (obj is string)
+                return LibPl.PL_atom_chars(this.handle) == (string)obj;
+            else
+                return false;
+        }
+        public static bool operator ==(PrologAtom a, string s)
+        {
+            return s == LibPl.PL_atom_chars(a.handle);
+        }
+        public static bool operator !=(PrologAtom a, string s)
+        {
+            return s != LibPl.PL_atom_chars(a.handle);
+        }
+
+
+        public static bool operator ==(PrologAtom a, PrologAtom b)
+        {
+            return b.handle == a.handle;
+        }
+        public static bool operator !=(PrologAtom a, PrologAtom b)
+        {
+            return b.handle != a.handle;
+        }
+    }
+    #endregion
+
+    #region PrologTerm
+    public class PrologTerm
+    {
+        protected uint m_term_ref; // term_t
+
+        // Properties
+        public uint TermRef
+        {
+            get { return m_term_ref; }
+            set { m_term_ref = (uint)value; }
+        }
+
+        // constructors
+        public PrologTerm()
+        {
+            m_term_ref = LibPl.PL_new_term_ref();
+        }
+        public PrologTerm(uint t)// PrologTerm(term_t t)
+        {
+            m_term_ref = t;
+        }
+
+        // C# --> PrologTerm
+        public PrologTerm(string text)
+        {
+            m_term_ref = LibPl.PL_new_term_ref();
+            LibPl.PL_put_atom_chars(m_term_ref, text);
+        }
+        public PrologTerm(int val)
+        {
+            m_term_ref = LibPl.PL_new_term_ref();
+            LibPl.PL_put_integer(m_term_ref, val);
+        }
+        public PrologTerm(double val)
+        {
+            m_term_ref = LibPl.PL_new_term_ref();
+            LibPl.PL_put_float(m_term_ref, val);
+        }
+        //public PrologTerm(const PrologAtom &a)
+        public PrologTerm(ref PrologAtom a)
+        {
+            m_term_ref = LibPl.PL_new_term_ref();
+            LibPl.PL_put_atom(m_term_ref, a.handle);
+        }
+
+        // PrologTerm --> C#
+        //operator term_t(void)
+        //public static implicit operator uint (PrologTerm t) 
+
+        override public string ToString()
+        {
+            return (string)this;
+        }
+        public static explicit operator string(PrologTerm t)
+        {
+            String s = "";
+            if (0 != LibPl.PL_get_chars(t.m_term_ref, ref s, LibPl.CVT_ALL | LibPl.CVT_WRITE | LibPl.BUF_RING))
+                return s;
+            throw new PrologTypeError("text", t);
+        }
+
+        public static explicit operator int(PrologTerm t)
+        {
+            int v = 0;
+            if (0 != LibPl.PL_get_long(t.m_term_ref, ref v))
+                return v;
+            throw new PrologTypeError("long", t);
+        }
+
+        public static explicit operator double(PrologTerm t)
+        {
+            double v = 0;
+            if (0 != LibPl.PL_get_float(t.m_term_ref, ref v))
+                return v;
+            throw new PrologTypeError("float", t);
+        }
+
+        public int Arity
+        {
+            get
+            {
+                uint name = 0; // atom_t 
+                int arity = 0;
+                if (0 != LibPl.PL_get_name_arity(m_term_ref, ref name, ref arity))
+                    return arity;
+                throw new PrologTypeError("compound", this);
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                uint name = 0; // atom_t 
+                int arity = 0;
+
+                if (0 != LibPl.PL_get_name_arity(m_term_ref, ref name, ref arity))
+                    return LibPl.PL_atom_chars(name);
+
+                throw new PrologTypeError("compound", this);
+            }
+        }
+
+        // Comparison standard order terms
+        public override int GetHashCode()
+        {
+            return this.m_term_ref.GetHashCode();
+        }
+        public override bool Equals(Object obj)
+        {
+            if (obj is PrologAtom)
+                return false;
+            else if (obj is PrologTerm)
+                return this == ((PrologTerm)obj);
+            else if (obj is int)
+                return this == ((int)obj);
+            else
+                return false;
+        }
+        public static bool operator ==([In]PrologTerm t1, [In]PrologTerm t2)
+        {
+            return LibPl.PL_compare(t1.TermRef, t2.TermRef) == 0;
+        }
+        public static bool operator !=([In]PrologTerm t1, [In]PrologTerm t2)
+        {
+            return LibPl.PL_compare(t1.TermRef, t2.TermRef) != 0;
+        }
+
+        // comparison (long)
+        public static bool operator ==([In]PrologTerm t1, [In]int lng)
+        {
+            int v0 = 0;
+            if (0 != LibPl.PL_get_long(t1.TermRef, ref v0))
+                return v0 == lng;
+            else
+                throw new PrologTypeError("integer", t1);
+        }
+        public static bool operator ==([In]int lng, [In]PrologTerm t1)
+        {
+            return t1 == lng;
+        }
+        public static bool operator !=([In]PrologTerm t1, [In]int lng)
+        {
+            int v0 = 0;
+            if (0 != LibPl.PL_get_long(t1.TermRef, ref v0))
+                return v0 != lng;
+            else
+                throw new PrologTypeError("integer", t1);
+        }
+        public static bool operator !=([In]int lng, [In]PrologTerm t1)
+        {
+            return t1 != lng;
+        }
+        /*
+		int operator <(long v);
+		int operator >(long v);
+		int operator <=(long v);
+		int operator >=(long v);
+		*/
+        // comparison (string)
+        public static bool operator ==([In]PrologTerm t1, [In]string str)
+        {
+            string s0 = "";
+            if (0 != LibPl.PL_get_chars(t1.TermRef, ref s0, LibPl.CVT_ALL))
+                return s0 == str;
+            else
+                throw new PrologTypeError("text", t1);
+        }
+        public static bool operator ==([In]string str, [In]PrologTerm t1)
+        {
+            return t1 == str;
+        }
+        public static bool operator !=([In]PrologTerm t1, [In]string str)
+        {
+            return !(t1 == str);
+        }
+        public static bool operator !=([In]string str, [In]PrologTerm t1)
+        {
+            return t1 != str;
+        }
+
+        // comparison (atom)
+        public static bool operator ==([In]PrologTerm t1, [In]PrologAtom atom)
+        {
+            uint a0 = 0;
+            if (0 != LibPl.PL_get_atom(t1.TermRef, ref a0))
+                return a0 == atom.handle;
+            else
+                throw new PrologTypeError("atom", t1);
+        }
+        public static bool operator ==([In]PrologAtom atom, [In]PrologTerm t1)
+        {
+            return t1 == atom;
+        }
+        public static bool operator !=([In]PrologTerm t1, [In]PrologAtom atom)
+        {
+            return !(t1 == atom);
+        }
+        public static bool operator !=([In]PrologAtom atom, [In]PrologTerm t1)
+        {
+            return t1 != atom;
+        }
+    } // class PrologTerm
+    #endregion
+
+    #region PrologTermList
+    public class PrologTermList
+    {
+
+        private uint m_a0; // term_t
+        private int m_size;
+
+        public PrologTermList()
+        {
+            m_a0 = 0;
+            m_size = 0;
+        }
+        public PrologTermList(int n)
+        {
+            m_a0 = LibPl.PL_new_term_refs(n);
+            m_size = n;
+        }
+        //public PrologTermList(int n, term_t t0)
+        public PrologTermList(int n, uint t0)
+        {
+            m_a0 = t0;
+            m_size = n;
+        }
+
+        // Properties
+        public uint A0
+        {
+            get { return m_a0; }
+            // set { a0 = value; }
+        }
+
+        public int Size
+        {
+            get { return m_size; }
+            // set { size = value; }
+        }
+
+
+        // create from args
+        public PrologTermList(PrologTerm m0)
+        {
+            m_size = 1;
+            m_a0 = m0.TermRef;
+        }
+        public PrologTermList(PrologTerm m0, PrologTerm m1)
+        {
+            m_size = 2;
+            m_a0 = LibPl.PL_new_term_refs(2);
+            LibPl.PL_put_term(m_a0 + 0, m0.TermRef);
+            LibPl.PL_put_term(m_a0 + 1, m1.TermRef);
+        }
+        PrologTermList(PrologTerm m0, PrologTerm m1, PrologTerm m2)
+        {
+            m_size = 3;
+            m_a0 = LibPl.PL_new_term_refs(3);
+            LibPl.PL_put_term(m_a0 + 0, m0.TermRef);
+            LibPl.PL_put_term(m_a0 + 1, m1.TermRef);
+            LibPl.PL_put_term(m_a0 + 2, m2.TermRef);
+        }
+
+        public PrologTerm this[int n]
+        {
+            get
+            {
+                if (n < 0 || n >= Size)
+                    throw new PrologTermListDomainError(Size, n);
+                else
+                    return new PrologTerm(A0 + (uint)n);
+            }
+            set
+            {
+                if (n < 0 || n >= Size)
+                    throw new PrologTermListDomainError(Size, n);
+                else
+                    LibPl.PL_put_term(m_a0 + (uint)n, ((PrologTerm)value).TermRef);
+            }
+        }
+    } // class PrologTermList
+    #endregion
+
+    #region PrologCompound
+    public class PrologCompound : PrologTerm
+    {
+        public PrologCompound(string text)
+        {
+            // term_t 
+            uint t = LibPl.PL_new_term_ref();
+
+            if (0 == LibPl.PL_chars_to_term(text, t))
+                throw new PrologException(new PrologTerm(t));
+
+            LibPl.PL_put_term(m_term_ref, t);
+        }
+
+        public PrologCompound(string functor, [In] PrologTermList args)
+        {
+            LibPl.PL_cons_functor_v(m_term_ref, LibPl.PL_new_functor(LibPl.PL_new_atom(functor), args.Size), args.A0);
+        }
+    } // class PrologCompound 
+    #endregion
+
+    #region PrologString
+    public class PrologString : PrologTerm
+    {
+        public PrologString(string text) : base()
+        {
+            LibPl.PL_put_string_chars(base.m_term_ref, text);
+        }
+        public PrologString(string text, int len) : base()
+        {
+            LibPl.PL_put_string_nchars(base.m_term_ref, len, text);
+        }
+    } // class PrologString
+    #endregion
+
+    #region PrologCodeList
+    public class PrologCodeList : PrologTerm
+    {
+        public PrologCodeList(string text) : base()
+        {
+            LibPl.PL_put_list_codes(base.m_term_ref, text);
+        }
+    } // class PrologCodeList
+    #endregion
+
+    #region PrologCharList
+    public class PrologCharList : PrologTerm
+    {
+        public PrologCharList(string text) : base()
+        {
+            LibPl.PL_put_list_chars(base.m_term_ref, text);
+        }
+    } // class PrologCharList
+    #endregion
+
+    #region PrologTail
+    public class PrologTail : PrologTerm // LISTS
+    {
+        public PrologTail([In] PrologTerm l)
+        {
+            if (0 != LibPl.PL_is_variable(l.TermRef) || 0 != LibPl.PL_is_list(l.TermRef))
+                TermRef = LibPl.PL_copy_term_ref(l.TermRef);
+            else
+                throw new PrologTypeError("list", l);
+        }
+
+        // building
+        public bool Append([In] PrologTerm e)
+        {
+            //term_t tmp = PL_new_term_ref();
+            uint tmp = LibPl.PL_new_term_ref();
+
+            if (0 != LibPl.PL_unify_list(TermRef, tmp, TermRef) && 0 != LibPl.PL_unify(tmp, e.TermRef))
+                return true;
+
+            return false;
+        }
+
+        public int Close()
+        {
+            return LibPl.PL_unify_nil(TermRef);
+        }
+
+        // enumerating
+        public bool Next(ref PrologTerm t)
+        {
+            t = new PrologTerm();
+            if (0 != LibPl.PL_get_list(this.TermRef, t.TermRef, this.TermRef))
+            {
+                return true;
+            }
+
+            if (0 != LibPl.PL_get_nil(this.TermRef))
+            {
+                return false;
+            }
+
+            throw new PrologTypeError("list", this);
+        }
+    } // class PrologTail
+    #endregion
+
+    #region PrologQuery
+    public class PrologFrame
+    {
+        private uint m_fid; // fid_t
+
+        public PrologFrame()
+        {
+            m_fid = LibPl.PL_open_foreign_frame();
+        }
+
+        ~PrologFrame()
+        {
+            if (m_fid > 0)
+                LibPl.PL_close_foreign_frame(m_fid);
+        }
+
+        public void Free()
+        {
+            LibPl.PL_rewind_foreign_frame(m_fid);
+            LibPl.PL_close_foreign_frame(m_fid);
+            m_fid = 0;
+        }
+
+        public void Rewind()
+        {
+            LibPl.PL_rewind_foreign_frame(m_fid);
+        }
+    } // PrologFrame
+
+    public class PrologQuery
+    {
+        private uint qid; // qid_t
+
+        // Properties DEBUG dump only
+        public uint DumpQid
+        {
+            get { return qid; }
+            // set { a0 = value; }
+        }
+
+
+        //	public PrologQuery(const char *name, const PrologTermList &av)
+        public PrologQuery(string name, PrologTermList av)
+        {
+            // predicate_t  is a void * --> System.IntPtr
+            System.IntPtr p = LibPl.PL_predicate(name, av.Size, "user");
+
+            qid = LibPl.PL_open_query((IntPtr)0, LibPl.PL_Q_CATCH_EXCEPTION, p, av.A0);
+        }
+
+
+        public PrologQuery(string module, string name, PrologTermList av)
+        {
+            // predicate_t
+            IntPtr p = LibPl.PL_predicate(name, av.Size, module);
+            qid = LibPl.PL_open_query((IntPtr)0, LibPl.PL_Q_CATCH_EXCEPTION, p, av.A0);
+        }
+
+        ~PrologQuery()
+        {
+            //if (qid > 0)
+            //    LibPl.PL_cut_query(qid);
+        }
+
+        public void Free()
+        {
+            if (qid > 0)
+                LibPl.PL_cut_query(qid);
+            qid = 0;
+        }
+
+        public bool NextSolution()
+        {
+            int rval = LibPl.PL_next_solution(qid);
+            if (0 == rval)
+            {	// error
+                uint ex; // term_t
+                if ((ex = LibPl.PL_exception(qid)) > 0)
+                {
+                    PrologException etmp = new PrologException(new PrologTerm(ex));
+                    etmp.CppThrow();
+                }
+            }
+            return rval > 0;
+        }
+
+        // STATIC PLCALL
+        public static bool PlCall(string predicate, [In] PrologTermList args)
+        {
+            bool bRet = false;
+            PrologQuery q = new PrologQuery(predicate, args);
+            bRet = q.NextSolution();
+            q.Free();
+            return bRet;
+        }
+        public static bool PlCall(string Module, string predicate, [In] PrologTermList args)
+        {
+            bool bRet = false;
+            PrologQuery q = new PrologQuery(Module, predicate, args);
+            bRet = q.NextSolution();
+            q.Free();
+            return bRet;
+        }
+        public static bool PlCall(string goal)
+        {
+            bool bRet = false;
+            PrologQuery q = new PrologQuery("call", new PrologTermList(new PrologCompound(goal)));
+            bRet = q.NextSolution();
+            q.Free();
+            return bRet;
+        }
+
+    } // class PrologQuery
+    #endregion
+
+    #region PrologException
+    public class PrologException : Exception
+    {
+        protected PrologTerm m_ExTerm;
+
+        public PrologException(PrologTerm t)
+        {
+            m_ExTerm = new PrologTerm(t.TermRef);
+        }
+
+        public override string Message
+        {
+            get { return this.ToString(); }
+        }
+
+        //operator char *(void);
+        override public string ToString()
+        {
+            string strRet = "[ERROR: Failed to generate message.  Internal error]\n";
+            PrologFrame fr = new PrologFrame();
+
+#if USE_PRINT_MESSAGE
+				PrologTermList av = new PrologTermList(2);
+
+				av[0] = new PrologCompound("print_message", new PrologTermList("error", m_ExTerm.term_ref));
+				PrologQuery q = new PrologQuery("$write_on_string", av);
+				if ( q.NextSolution() )
+					strRet = (string)av[1];
+				q.Free();
+#else
+            PrologTermList av = new PrologTermList(2);
+            av[0] = new PrologTerm(m_ExTerm.TermRef);
+            PrologQuery q = new PrologQuery("$messages", "message_to_string", av);
+            if (q.NextSolution())
+                strRet = (string)av[1];
+            q.Free();
+#endif
+            fr.Free();
+            return strRet;
+        }
+
+        public int PlThrow()
+        {
+            return LibPl.PL_raise_exception(m_ExTerm.TermRef);
+        }
+
+        public void CppThrow()
+        {
+            // term_t
+            uint a = LibPl.PL_new_term_ref();
+            // atom_t 
+            uint name = 0;
+            int arity = 0;
+
+            if (0 != LibPl.PL_get_arg(1, m_ExTerm.TermRef, a) && 0 != LibPl.PL_get_name_arity(a, ref name, ref arity))
+            {
+                string str = LibPl.PL_atom_chars(name);
+
+                if (str == "type_error")
+                    throw new PrologTypeError(m_ExTerm);
+                else if (str == "domain_error")
+                    throw new PrologDomainError(m_ExTerm);
+            }
+            throw this;
+        }
+
+    } // class PrologException 
+
+    public class PrologTypeError : PrologException
+    {
+        public PrologTypeError([In] PrologTerm t) : base (t)
+        {
+        }
+
+        public PrologTypeError(string expected, PrologTerm actual) : base(
+			new PrologCompound("error",
+			new PrologTermList(new PrologCompound("type_error",
+			new PrologTermList(new PrologTerm(expected), actual)),
+			new PrologTerm())
+			))
+        {
+        }
+    }
+
+    public class PrologDomainError : PrologException
+    {
+        public PrologDomainError([In] PrologTerm t) : base(t)
+        { }
+
+        PrologDomainError(string expected, PrologTerm actual) :
+			base(new PrologCompound("error",
+			new PrologTermList(new PrologCompound("domain_error",
+			new PrologTermList(new PrologTerm(expected), actual)),
+			new PrologTerm())
+			)
+			)
+        { }
+    }
+
+    public class PrologTermListDomainError : PrologException
+    {
+        public PrologTermListDomainError(int size, int n) :
+			base(new PrologCompound("error",
+			new PrologTermList(new PrologCompound("domain_error",
+			new PrologTermList(new PrologCompound("argv", new PrologTermList(size)), new PrologTerm(n))
+			),
+			new PrologTerm())
+			)
+			)
+        { }
+    }
+
+
+
+    #endregion
+
+    #region PrologError
+    class PrologError : Exception
+    {
+        public PrologError()
+        { }
+        public PrologError(string message) : base(message)
+        { }
+        public PrologError(string message, Exception inner) : base(message, inner)
+        { }
+    }
+    #endregion
+
+    #region PrologEngine
+    public class PrologEngine
+    {
+
+        static public bool IsInitialised(int argc, string[] argv)
+        {
+            int i = LibPl.PL_is_initialised(ref argc, ref argv);
+            if (0 == i)
+                return false;
+            else
+                return true;
+        }
+
+        public PrologEngine(params string[] args)
+        {
+            int argc = args.Length;
+            if (0 != LibPl.PL_is_initialised(ref argc, ref args))
+            {
+                throw (new PrologError("PrologEngine is already initialised"));
+            }
+            else
+            {
+                if (0 == LibPl.PL_initialise(argc, args))
+                    throw (new PrologError("failed to initialise"));
+            }
+        }
+
+        public PrologEngine(string arg) // @todo  so umbauen das ...
+        {
+            String[] av = { arg };
+
+            if (0 == LibPl.PL_initialise(1, av))
+                throw (new PrologError("failed to initialise"));
+        }
+
+
+        // Destructor is in static library wrapper libpl
+        //~PrologEngine()
+        //{
+        //	libpl.PL_cleanup(0);
+        //}
+
+        public void PlCleanup()
+        {
+            LibPl.PL_cleanup(0);
+        }
+
+
+        // *****************************
+        // Multi Threading
+        // *****************************
+
+        /// <summary />
+        /// <returns>Reference count of the engine.
+        /// If an error occurs, -1 is returned.
+        /// If this Prolog is not compiled for multi-threading, -2 is returned.
+        /// </returns>
+        public static int PlThreadAttachEngine()
+        {
+            try
+            {
+                return LibPl.PL_thread_attach_engine(IntPtr.Zero);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return -1;
+        }
+        // Returns the integer Prolog identifier of the engine or 
+        // -1 if the calling thread has no Prolog engine. 
+        // This function is also provided in the single-threaded version of SWI-Prolog, where it returns -2. 
+        public static int PlThreadSelf
+        {
+            get
+            {
+                return LibPl.PL_thread_self();
+            }
+        }
+        // Returns TRUE on success and FALSE if the calling thread has no 
+        // engine or this Prolog does not support threads. 
+        public static bool PlThreadDestroyEngine
+        {
+            get
+            {
+                return 0 != LibPl.PL_thread_destroy_engine();
+            }
+        }
+
+    }
+    #endregion
+
+    #region PrologMtEngine
+    public class PrologMtEngine
+    {
+        private IntPtr m_iEngineNumber = IntPtr.Zero;
+        private IntPtr m_iEngineNumberStore = IntPtr.Zero;
+
+        override public string ToString()
+        {
+            return m_iEngineNumber.ToString();
+        }
+
+        public PrologMtEngine()
+        {
+            if (0 != LibPl.PL_is_initialised(IntPtr.Zero, IntPtr.Zero))
+            {
+                try
+                {
+                    m_iEngineNumber = LibPl.PL_create_engine(IntPtr.Zero);
+                }
+                catch (Exception ex)
+                {
+                    throw (new PrologError("PL_create_engine : " + ex.Message));
+                }
+            }
+            else
+            {
+                throw (new PrologError("There is no PrologEngine initialised"));
+            }
+        }
+
+        public void PlSetEngine()
+        {
+            IntPtr pNullPointer = IntPtr.Zero;
+            int iRet = LibPl.PL_set_engine(m_iEngineNumber, ref pNullPointer);
+            switch (iRet)
+            {
+                case LibPl.PL_ENGINE_SET: break; // all is fine
+                case LibPl.PL_ENGINE_INVAL: throw (new PrologError("PL_set_engine returns Invalid")); //break;
+                case LibPl.PL_ENGINE_INUSE: throw (new PrologError("PL_set_engine returns it is used by an other thread")); //break;
+                default: throw (new PrologError("Unknown return from PL_set_engine"));
+            }
+        }
+
+        public void PlDetachEngine()
+        {
+            int iRet = LibPl.PL_set_engine(m_iEngineNumber, ref m_iEngineNumberStore);
+            switch (iRet)
+            {
+                case LibPl.PL_ENGINE_SET: break; // all is fine
+                case LibPl.PL_ENGINE_INVAL: throw (new PrologError("PL_set_engine(detach) returns Invalid")); //break;
+                case LibPl.PL_ENGINE_INUSE: throw (new PrologError("PL_set_engine(detach) returns it is used by an other thread")); //break;
+                default: throw (new PrologError("Unknown return from PL_set_engine(detach)"));
+            }
+        }
+
+        public void Free()
+        {
+            if (0 == LibPl.PL_destroy_engine(m_iEngineNumber))
+                throw (new PrologError("failed to destroy engine"));
+            m_iEngineNumber = IntPtr.Zero;
+        }
+
+        ~PrologMtEngine()
+        {
+            if (IntPtr.Zero != m_iEngineNumber)
+                Free();
+        }
+
+    } // class PrologMtEngine
+    #endregion
+}
