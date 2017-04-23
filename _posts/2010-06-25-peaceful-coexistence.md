@@ -29,114 +29,49 @@ So, we will utilize the FrameworkElementAdapters class to help us convert a Fram
 
 First, we create a WPF user control. Then, we create a COM interface that contains the handle and any other properties we may want to use on &ldquo;the other side&rdquo;.
 
-<div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:9ce6104f-a9aa-4a17-a79f-3a39532ebf7c:9deedec7-4ab5-4ffe-ad31-1339c44d6e11" class="wlWriterEditableSmartContent">
-  <div style="border: #000080 1px solid; color: #000; font-family: 'Courier New', Courier, Monospace; font-size: 10pt">
-    <div style="background: #fff; max-height: 300px; overflow: auto">
-      <ol style="background: #ffffff; margin: 0; padding: 0 0 0 5px;">
-        <li>
-          [<span style="color:#2b91af">Guid</span>(<span style="color:#a31515">&#8220;45421E7C-EA8E-4987-A669-5334795D1627&#8221;</span>)]
-        </li>
-        <li style="background: #f3f3f3">
-          <span style="color:#0000ff">public</span> <span style="color:#0000ff">interface</span> <span style="color:#2b91af">IMyControl</span>
-        </li>
-        <li>
-          {
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af">IntPtr</span> Handle { <span style="color:#0000ff">get</span>; }
-        </li>
-        <li>
-          }
-        </li>
-      </ol>
-    </div>
-  </div>
-</div>
+```csharp
+[Guid(“45421E7C-EA8E-4987-A669-5334795D1627”)]
+public interface IMyControl
+{
+    IntPtr Handle { get; }
+}
+```
 
 Now, we implement the interface using the FrameworkElementAdapters class:
 
-<div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:9ce6104f-a9aa-4a17-a79f-3a39532ebf7c:8c65ce44-3119-40ef-8ae9-54b38bf1ff9d" class="wlWriterEditableSmartContent">
-  <div style="border: #000080 1px solid; color: #000; font-family: 'Courier New', Courier, Monospace; font-size: 10pt">
-    <div style="background: #ddd; max-height: 300px; overflow: auto">
-      <ol style="background: #ffffff; margin: 0 0 0 2.5em; padding: 0 0 0 5px;">
-        <li>
-          [<span style="color:#2b91af">Guid</span>(<span style="color:#a31515">&#8220;4F03582A-8ECA-4A27-9E4E-00AB54078592&#8221;</span>)]
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0000ff">public</span> <span style="color:#0000ff">class</span> <span style="color:#2b91af">MyControl</span> : <span style="color:#2b91af">IMyControl</span>
-        </li>
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;{
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0000ff">private</span> <span style="color:#2b91af">UserControl1</span> _instance;
-        </li>
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0000ff">private</span> <span style="color:#2b91af">INativeHandleContract</span> _contract;
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;
-        </li>
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0000ff">public</span> MyControl()
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{
-        </li>
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_instance = <span style="color:#0000ff">new</span> <span style="color:#2b91af">UserControl1</span>();
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_contract = <span style="color:#2b91af">FrameworkElementAdapters</span>.ViewToContractAdapter(_instance);
-        </li>
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Handle = _contract.GetHandle();
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
-        </li>
-        <li>
-          &nbsp;
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0000ff">public</span> <span style="color:#2b91af">IntPtr</span> Handle { <span style="color:#0000ff">get</span>; <span style="color:#0000ff">private</span> <span style="color:#0000ff">set</span>; }
-        </li>
-        <li>
-          &nbsp;&nbsp;&nbsp;&nbsp;}
-        </li>
-      </ol>
-    </div>
-  </div>
-</div>
+```csharp
+[Guid("4F03582A-8ECA-4A27-9E4E-00AB54078592")]
+public class MyControl : IMyControl
+{
+    private UserControl1 _instance;
+    private INativeHandleContract _contract;
 
+    public MyControl()
+    {
+        _instance = new UserControl1();
+        _contract = FrameworkElementAdapters.ViewToContractAdapter(_instance);
+        Handle = _contract.GetHandle();
+    }
+
+    public IntPtr Handle { get; private set; }
+}
+```
+
+        
 We must also tag the assembly (or the required types) with the [ComVisible(true)] attribute.
 
 Now, for the host, we simply reference the assembly containing the user control and instantiate the COM object. We also need to provide a simple implementation of INativeHandleContract (see the sample code).
 
-<div style="padding-bottom: 0px; margin: 0px; padding-left: 0px; padding-right: 0px; display: inline; float: none; padding-top: 0px" id="scid:9ce6104f-a9aa-4a17-a79f-3a39532ebf7c:7bfe535a-a393-4700-8e6a-f6709ebe0afb" class="wlWriterEditableSmartContent">
-  <div style="border: #000080 1px solid; color: #000; font-family: 'Courier New', Courier, Monospace; font-size: 10pt">
-    <div style="background: #ddd; max-height: 300px; overflow: auto">
-      <ol style="background: #ffffff; margin: 0 0 0 2em; padding: 0 0 0 5px;">
-        <li>
-          _control = (WpfSxsControls.<span style="color:#2b91af">IMyControl</span>)<span style="color:#2b91af">Activator</span>.CreateInstance(
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#2b91af">Type</span>.GetTypeFromCLSID(<span style="color:#0000ff">new</span> <span style="color:#2b91af">Guid</span>(<span style="color:#a31515">&#8220;{4F03582A-8ECA-4A27-9E4E-00AB54078592}&#8221;</span>)));
-        </li>
-        <li>
-          Content = <span style="color:#2b91af">FrameworkElementAdapters</span>.ContractToViewAdapter(
-        </li>
-        <li style="background: #f3f3f3">
-          &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#0000ff">new</span> <span style="color:#2b91af">NativeHandleContract</span>(_control.Handle));
-        </li>
-      </ol>
-    </div>
-  </div>
-</div>
+```csharp
+_control = (WpfSxsControls.IMyControl)Activator.CreateInstance(
+    Type.GetTypeFromCLSID(new Guid("{4F03582A-8ECA-4A27-9E4E-00AB54078592}")));
+Content = FrameworkElementAdapters.ContractToViewAdapter(
+    new NativeHandleContract(_control.Handle));
+```
 
 Lastly, there&rsquo;s the issue of COM registration. You can either register the COM object in the registry, which can cause deployment problems (mainly during uninstall). To do it quickly from VS, simply check the following box in the Build tab of the control assembly&rsquo;s project properties:
 
- <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" alt="image" src="https://arbel.net/attachments/images/image_5F00_thumb_5F00_31039729.png" border="0" height="74" width="244" />
+!(Properties)[https://arbel.net/attachments/Images/image_5F00_thumb_5F00_31039729.png" border="0" height="74" width="244"]
 
 **Or** you can use [Registration-Free COM](http://msdn.microsoft.com/en-us/library/ms973913.aspx). The provided sample code uses the latter method.
 

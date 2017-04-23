@@ -18,11 +18,11 @@ I've been toying around with the CTP for a couple of days. There are some very n
 
 I have a **very**&nbsp;old display adapter (ATI Rage Fury Pro) which, in earlier builds, was able to run the DCM/DWM (but not very smoothly, naturally.) This time, the registry hacks to get the DWM ignore the incompatibility didn't work. So I ventured on a mission to find where they hid it this time. This is what&nbsp;I came up with (copy and paste into notepad and save as **dwm.reg**):
 
-<span style="font-family: Courier New;">Windows Registry Editor Version 5.00</p> 
+```
+Windows Registry Editor Version 5.00
 
-<p>
-  [HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM] <br />&#8220;UseMachineCheck&#8221;=dword:00000000</span>
-</p>
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\DWM] <br />&#8220;UseMachineCheck&#8221;=dword:00000000
+```
 
 <p>
   After making this change, just open the task manager and kill <b>dwm.exe</b>. The service will restart itself, and if your adapter is good enough, you'll see <b>Aero Glass</b>. I haven't been thus fortunate myself, so I'll go ahead and buy a new adapter (which is long-due.) Note: if all you see is your desktop flickering like hell, hitting CTRL+ALT+F9 will <b>temporarily</b> disable DWM, and allow you to unsent that registry key (it's enough to change the `UseMachineCheck`&nbsp;value to 1.)

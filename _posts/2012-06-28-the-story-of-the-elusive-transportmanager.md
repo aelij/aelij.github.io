@@ -137,7 +137,7 @@ DOMAIN(000000000368B3B0):HANDLE(Strong):b812f0:Root:  000000010005c840(System.Ru
  00000001c005e890(System.ServiceModel.Description.ServiceEndpointCollection)->
  00000001c005e8b0(System.Collections.Generic.List`1[[System.ServiceModel.Description.ServiceEndpoint, System.ServiceModel]])->
  00000001c006ce58(System.Object[])->
- 00000001c00591f0<span style="background-color: #ffff00;">(Microsoft.ApplicationServer.Hosting.Management.ServiceManagementEndpoint)-></span></span>
+ 00000001c00591f0(Microsoft.ApplicationServer.Hosting.Management.ServiceManagementEndpoint)->
 ```
 
 And that's it.

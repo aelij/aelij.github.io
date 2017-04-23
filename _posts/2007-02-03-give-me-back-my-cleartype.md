@@ -38,14 +38,9 @@ In Vista, ClearType is turned on by default, so WPF also uses it. In XP, however
 
 Now, for my woes. Take a look at these screenshots:
 
-&nbsp;
+<img style="width: 570px; height: 240px;" src="https://arbel.net/attachments/Images/1024.ClearType.png" />
 
-<div class="wlWriterSmartContent" id="6960CE03-38FC-44df-87D4-FA4540212B06:07aa1e71-d574-4408-be8f-9278d6a2b7c0" style="PADDING-RIGHT:0px;DISPLAY:inline;PADDING-LEFT:0px;FLOAT:none;PADDING-BOTTOM:0px;MARGIN:0px;PADDING-TOP:0px;">
-  <img style="width: 570px; height: 240px;" src="https://arbel.net/attachments/images/1024.ClearType.png" />
-</div>
-
-&nbsp;
-
+  
 The left one is with ClearType, the right&nbsp;one without.&nbsp;I hope the difference is clear. As I mentioned earlier, context menus, tooltips&nbsp;and combo box use the Popup class, which has the AllowsTransparancy set to true. This is _hardcoded_. The reason for this is obvious: the designers of WPF wanted you to be able to customize these windows as you saw fit. And it can truly be used to do wonderful things (see this [styled tooltips example](http://blois.us/blog/2006/09/styled-tooltips-it-took-me-while-to.html). Quite effortless, if you consider what you had to do to get this done in Win32.) But I think **readability** is more important&nbsp;in these cases. At any rate, this should be configurable.
 
 Aside from the text issues, layered windows' performance is much worse than normal windows. Even under Vista, where they are hardware-accelerated, the menu highlight is lagging after the mouse sometimes.

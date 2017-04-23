@@ -22,13 +22,11 @@ WPF comes with a few theme assemblies, one for each Windows theme (Luna, Royale 
 
 To accomplish that, simply add the following code in your Application Startup event (this example shows how to use the Aero theme): 
 
-<p style="MARGIN-LEFT:36pt;">
-  <span style="FONT-SIZE:10pt;FONT-FAMILY:Consolas;"><span style="COLOR:teal;BACKGROUND-COLOR:white;">Uri</span><span style="BACKGROUND-COLOR:white;"> uri = <span style="COLOR:blue;">new</span> <span style="COLOR:teal;">Uri</span>(<span style="COLOR:maroon;">&#8220;PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component\\themes/aero.normalcolor.xaml&#8221;</span>, <span style="COLOR:teal;">UriKind</span>.Relative); </span></span>
-</p>
+```csharp
+Uri uri = new Uri(“PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component\\themes/aero.normalcolor.xaml”, UriKind.Relative);
 
-<p style="MARGIN-LEFT:36pt;">
-  <span style="FONT-SIZE:10pt;FONT-FAMILY:Consolas;"><span style="BACKGROUND-COLOR:white;">Resources.MergedDictionaries.Add(<span style="COLOR:teal;">Application</span>.LoadComponent(uri) <span style="COLOR:blue;">as</span> <span style="COLOR:teal;">ResourceDictionary</span>);</span> </span>
-</p>
+Resources.MergedDictionaries.Add(Application.LoadComponent(uri) as ResourceDictionary); 
+```
 
 It's important to specify the version and the public key token. Otherwise you'll have to copy the theme assembly to the folder of your executable. The reason I'm adding it to the merged dictionaries collection&nbsp;is that I don't want to lose other resources I added to the App.xaml file. 
 
@@ -38,27 +36,24 @@ Last note: From my experience, Windows Server 2003 always shows the Classic them
 
 **Edit:** Robby Ingebretsen (notstatic.com)&nbsp;also [blogged](http://notstatic.com/archives/56) about this because the new [Zune theme](http://go.microsoft.com/fwlink/?LinkID=75078), which&nbsp;caused WPF to fallback to the Classic theme. However, he placed the code in XAML. Here is a version of that using merged dictionaries (which will allow you to add other resources to App.xaml):
 
-<span style="color: #0000ff;"></p> 
 
-<p style="FONT-SIZE:10pt;FONT-FAMILY:Consolas;">
-  <<span style="color: #008080;">Application.Resources</span><span style="color: #0000ff;">><br />&nbsp;&nbsp;&nbsp; <</span><span style="color: #008080;">ResourceDictionary</span><span style="color: #0000ff;">><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <</span><span style="color: #008080;">ResourceDictionary.MergedDictionaries</span><span style="color: #0000ff;">><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <</span><span style="color: #008080;">ResourceDictionary</span><span style="color: #0000ff;"> </span>Source<span style="color: #0000ff;">=</span><span style="color: #800000;">&#8220;</span><span style="color: #000080;">/PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component\themes/aero.normalcolor.xaml</span><span style="color: #800000;">&#8220;</span><span style="color: #0000ff;"> /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </</span><span style="color: #008080;">ResourceDictionary.MergedDictionaries</span><span style="color: #0000ff;">></p> 
-  
-  <p>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style="color: #0000ff;"><!&#8211;</span><span style="color: #008000;"> other resources go here </span><span style="color: #0000ff;">&#8211;><br /></span><br />&nbsp;&nbsp;&nbsp; </</span><span style="color: #008080;">ResourceDictionary</span><span style="color: #0000ff;">><br /></</span><span style="color: #008080;">Application.Resources</span><span style="color: #0000ff;">></span>
-  </p>
-  
-  <p>
-    <span style="color: #000000;"><b>Update:</b> The Orcas designer seems to be having problems with the relative URI. Using an absolute URI solves the issue: (I've also attached a sample <b>Orcas</b>&nbsp;project)</span>
-  </p>
-  
-  <p>
-    <span style="color: #000080;">pack://application:,,,/PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component\themes/aero.normalcolor.xaml</span>
-  </p>
-  
-  <p>
-    </span>
-  </p>
-  
-  <p>
-    Attachment: <a href="https://arbel.net/attachments/ForcedTheme.rar">ForcedTheme.rar</a>
-  </p>
+```xml
+<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="/PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component\themes/aero.normalcolor.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+
+        <!– other resources go here –>
+
+    </ResourceDictionary>
+</Application.Resources> 
+```
+
+**Update:** The Orcas designer seems to be having problems with the relative URI. Using an absolute URI solves the issue: (I've also attached a sample Orcas project)
+
+```
+pack://application:,,,/PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;component\themes/aero.normalcolor.xaml
+```
+
+Attachment: <a href="https://arbel.net/attachments/ForcedTheme.rar">ForcedTheme.rar</a>

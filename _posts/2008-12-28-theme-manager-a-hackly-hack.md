@@ -24,12 +24,10 @@ The solution offered in the aforementioned post loads a selected theme dictionar
 As an experiment , I&rsquo;ve decided to hack into the bowels of WPF and force it to recognize a different theme as the system theme. I must say this is one of the ugliest hacks I&rsquo;ve ever done. The result is the class _ThemeManager_, which exposes a single static method:
 
 ```csharp
-    public static void ChangeTheme(string themeName, string themeColor);
+public static void ChangeTheme(string themeName, string themeColor);
+
+public static void ChangeTheme(string themeName, string themeColor);
 ```
-
-public static void </span>ChangeTheme(<span style="color:blue;">string </span>themeName, <span style="color:blue;">string </span>themeColor);</span></pre>
-
-[](http://11011.net/software/vspaste)
 
 Examples of theme name and color pairs: { &ldquo;luna&rdquo;, &ldquo;homestead&rdquo; }, { &ldquo;royale&rdquo;, &ldquo;normalcolor&rdquo; }, { &ldquo;classic&rdquo;, &ldquo;&rdquo; }. If you pass two empty strings, the default system theme will return. You can also invent a new theme of your own, give it a name and load it this way. I haven&rsquo;t tried it, but it should work, as long as you conform to the theme dictionary location conventions.
 

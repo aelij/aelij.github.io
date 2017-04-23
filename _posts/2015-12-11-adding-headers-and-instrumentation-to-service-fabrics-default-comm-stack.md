@@ -20,49 +20,32 @@ With Service Fabric SDK v2 this became much simpler. Check out this [SO answer](
 
 Service Fabric's default communication stack for Reliable Services provides a simple way to enable communications without worrying about protocols, discovery, and much more as we shall see. To use the stack, we need to create a `ServiceRemotingListener`, which implements `ICommunicationListener`, as well as create a service interface:
 
-[code lang=csharp]
-  
+```csharp
 interface IMyService : IService
-  
 {
-      
-Task<MyData> DoIt();
-  
+    Task<MyData> DoIt();
 }
 
 class MyService : StatelessService, IMyService
-  
 {
-      
-protected override IEnumerable CreateServiceInstanceListeners()
-      
-{
-          
-return new[] { new ServiceInstanceListener(parameters => new ServiceRemotingListener(parameters, this)) };
-      
-}
+    protected override IEnumerable CreateServiceInstanceListeners()
+    {
+        return new[] { new ServiceInstanceListener(parameters => new ServiceRemotingListener(parameters, this)) };
+    }
 
-public Task<MyData> DoIt()
-      
-{
-          
-return Task.FromResult(new MyData());
-      
+    public Task<MyData> DoIt()  
+    {
+        return Task.FromResult(new MyData());
+    }
 }
-  
-}
-  
-[/code]
+```
 
 Then, to use the service, we can create a proxy using `ServiceProxy`:
 
-[code lang=text]
-  
+```csharp
 var myService = ServiceProxy.Create<IMyService>();
-  
 await myService.DoIt();
-  
-[/code]
+```
 
 However, what the stack doesn't _trivially_ provide are hooks for adding headers and instrumentation for the service operations. Headers are essential in modern SO architectures. They can allow ambient information such as identity to pass along messages. Instrumentation allows you to add code when a service operation starts and ends. This could be used for logging, error handling, authorization and more. In this post I will share a solution for adding both of these.
 

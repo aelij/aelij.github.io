@@ -21,12 +21,6 @@ So I wrote this this gist to solve the problem:
 
 It works essentially the same as the original code from the async NuGet package, except for one thing &#8211; before rethrowing an async exception, it attempts to wrap it in a new exception of the same type, and place the old one as its inner exception. This way, try..catch blocks work as expected, and the stack trace is preserved.
 
-<div class="edit-comment-hide">
-  <div class="comment-body markdown-body markdown-format js-comment-body">
-    <p>
-      Note that for C#'s method overload resolution to prefer this over the original implementation, you should place the <code>AwaitExtensions2</code> class in your app's root namespace. To verify that it does, you can call GetAwaiter and check the return type is TaskAwaiter2 (and not TaskAwaiter).
-    </p>
-  </div>
-</div>
+Note that for C#'s method overload resolution to prefer this over the original implementation, you should place the <code>AwaitExtensions2</code> class in your app's root namespace. To verify that it does, you can call GetAwaiter and check the return type is TaskAwaiter2 (and not TaskAwaiter).
 
 Enjoy!

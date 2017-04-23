@@ -16,29 +16,9 @@ tags:
   - Contests
   - Windows Forms
 ---
-<div style="float:left;">
-  <a href="http://channel9.msdn.com/pdc/pdcfriends.aspx"><img alt="PDC'05 - Developer Powered" src="https://arbel.net/attachments/images/47.PDC05Flair_74782.jpg" style="width: 149px; height: 153px;" title="PDC'05 - Developer Powered" width="149" border="0" height="153" /> </a>
-</div>
 
-<div>
-  I've posted my &ldquo;<a href="http://channel9.msdn.com/pdc/">PDC 4 Free</a>&rdquo; contest <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=100959">entry</a>. It's a game of Monopoly where you can play as your favorite PDC lecturer (such as Bill Gates :) Wish me luck!
-</div>
+I've posted my &ldquo;<a href="http://channel9.msdn.com/pdc/">PDC 4 Free</a>&rdquo; contest <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=100959">entry</a>. It's a game of Monopoly where you can play as your favorite PDC lecturer (such as Bill Gates :) Wish me luck!
 
-<div>
-</div>
-
-<div>
-</div>
-
-<div>
-  <b></b>
-</div>
-
-<div>
-  <b>Update: </b>Didn't win. You can download the app below.
-</div>
-
-<div style="clear:both;">
-</div>
+**Update:** Didn't win. You can download the app below.
 
 Attachment: [Monopolij.rar](https://arbel.net/attachments/Monopolij.rar)
