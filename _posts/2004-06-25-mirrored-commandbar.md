@@ -15,6 +15,8 @@ tags:
 ---
 I've been working on a **mirrored**&nbsp;**RTL** (right-to-left) version of [Lutz Roeder](http://www.aisto.com/roeder/DotNet/)'s great CommandBar control for Windows Forms. There's one problem left, which I haven't solved yet, so I'd appreciate any comment on the matter. 
 
+<!--more-->
+
 This is my tweaked CommandBar:
 
 <img border="0" height="238" src="https://arbel.net/attachments/images/41.rtl1.png" width="568" />

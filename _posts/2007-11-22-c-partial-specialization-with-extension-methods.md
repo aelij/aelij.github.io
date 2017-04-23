@@ -18,6 +18,8 @@ tags:
 ---
 One of the things C# generics lacks ([compared](http://msdn2.microsoft.com/en-us/library/c6cyy67b.aspx) to C++ templates) is [specialization](http://msdn2.microsoft.com/en-us/library/c401y1kb.aspx) (neither explicit nor partial). This can be very useful in some cases where you want to perform something differently for a specific `T` in a `Class<T>`.
 
+<!--more-->
+
 With C# 3.0, there is a relatively easy way to achieve this, albeit not optimal, for reasons I'll specify later on. Take a look at the following piece of code:
 
 ```csharp

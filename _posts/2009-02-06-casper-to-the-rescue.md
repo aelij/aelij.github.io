@@ -18,6 +18,8 @@ tags:
 ---
 WPF has ClearType [issues](https://arbel.net/blog/archive/2007/02/02/give-me-back-my-cleartype.aspx). Hopefully some of them will be solved in the upcoming .NET 4.0. Meanwhile, however, I have concocted a nifty solution to one of the scenarios &ndash; placing stuff on the Aero Glass DWM frame.
 
+<!--more-->
+
 When you extend the DWM frame in a WPF application you must set the HwndTarget.BackgroundColor property to Transparent, which turns off ClearType for the entire window.
 
 Most of the Ribbon implementations do this so they could place the application menu (the round button) halfway on the window title, as well as the quick access toolbar. Since Ribbon-based applications are mostly document-oriented, this is particularly bad, since it completely botches the text readability of the app.

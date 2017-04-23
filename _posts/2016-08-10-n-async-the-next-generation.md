@@ -12,6 +12,8 @@ categories:
 ---
 In the [previous installment](https://arbel.net/2010/11/12/n-async-part-1/), I discussed how to use iterators (`yield return`) to create async methods. This time, we're about to do almost the opposite &#8211; use async methods to implement async iterators.
 
+<!--more-->
+
 Here's what it looks like:
 
 <script src="https://gist.github.com/aelij/dd36d8df93eacb004949af95298de61a.js"></script>

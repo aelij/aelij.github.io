@@ -3,9 +3,7 @@ id: 284
 title: RoslynPad
 date: 2013-05-11T21:35:10+00:00
 author: Eli Arbel
-excerpt: |
-  Hacking the Roslyn code has been fun. It is a very impressive piece of well engineered code.
-  
+excerpt: |  
   The first experiment I'm about to present in this post is a simple code editor (similar to the acclaimed LINQPad) that uses two parts of Roslyn: the Script Engine and Completion Service.
 layout: post
 guid: http://arbel.net/?p=284
@@ -22,6 +20,8 @@ tags:
   - WPF
 ---
 **[Updated Post](https://arbel.net/2016/02/22/roslynpad-01/)**
+
+<!--more-->
 
 Hacking the [Roslyn](http://msdn.microsoft.com/en-us/vstudio/roslyn.aspx) code has been fun. It is a very impressive piece of well engineered code.
 

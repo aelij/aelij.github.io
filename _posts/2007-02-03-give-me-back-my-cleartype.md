@@ -22,6 +22,8 @@ tags:
 ---
 WPF has a separate [ClearType](http://www.microsoft.com/typography/cleartypeinfo.mspx) rendering system, which is better than GDI's (mostly because it also does y-direction antialiasing; read more [here](http://msdn2.microsoft.com/en-us/library/ms749295.aspx)&nbsp;and in the [WPF Text Blog](http://blogs.msdn.com/text/).)
 
+<!--more-->
+
 However, there are some situations in which WPF cannot use ClearType, and has to resort to grayscale antialiasing (it cannot render _aliased_ text because of its pixel independent architecture) which comes out pretty blurry for small text sizes, in my opinion.
 
 Here's when WPF can't use ClearType:

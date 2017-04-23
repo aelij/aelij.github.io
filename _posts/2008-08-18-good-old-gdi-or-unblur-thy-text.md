@@ -16,6 +16,8 @@ tags:
 ---
 It's been a while since I've done anything with GDI+ (i.e. System.Drawing). System.Windows (i.e. WPF) is so much more powerful.
 
+<!--more-->
+
 However, there's one area where it seems the good old GDI+ can still surpass it's shiny new successor: text.
 
 There have been many complaints about text rendering in WPF. I [wrote](https://arbel.net/blog/archive/2007/02/02/give-me-back-my-cleartype.aspx) about some of them myself. You can find a lot of questions on the WPF forum ([to](http://forums.msdn.microsoft.com/en-US/wpf/thread/1ad9a62a-d1a4-4ca2-a950-3b7bf5240de5/) [name](http://forums.msdn.microsoft.com/en-US/wpf/thread/5289ee56-6d06-4f66-84f2-69865b6dc401/) [a](http://forums.msdn.microsoft.com/en-US/wpf/thread/9e79812a-5fcc-4287-8e70-55e905b408b2) [few](http://forums.msdn.microsoft.com/en-US/wpf/thread/1c8d8627-a527-4d5e-8ae3-575867e7ea47/)), but not a lot of answers.

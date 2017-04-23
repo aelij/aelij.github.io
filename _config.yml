@@ -11,7 +11,7 @@ linkedin_username: aelij
 
 highlighter: rouge
 markdown: kramdown
-excerpt_separator: "\n\n"
+excerpt_separator:  <!--more-->
 
 permalink: /:year/:month/:day/:title/
 paginate: 15

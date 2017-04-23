@@ -14,6 +14,8 @@ tags:
 ---
 ## Windows' dialogs can be bad for your app
 
+<!--more-->
+
   * They don't allow you to resize, minimize or do anything with the containing window
   * As a consequence of the above, when you use WIN+D to show the desktop, then open another window, they suddenly pop back up from nowhere (along with the containing window, of course)
   * You can't have dialogs that are context-specific (e.g. a certain tab)

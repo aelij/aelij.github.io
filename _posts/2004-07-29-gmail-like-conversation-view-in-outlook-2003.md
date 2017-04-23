@@ -18,6 +18,8 @@ tags:
 ---
 Well, it's not perfect, but it may be useful to some.
 
+<!--more-->
+
   * Create a new **search folder** and name it **All Mail**. Don't specify any criteria, and select the folders you want (should be only inbox and sent items folders. You may also want to uncheck the &ldquo;include subfolders&ldquo; option.)
   * Go to **All Mail** and wait for it to finish searching (it may take a while, but it's a one-time thing.)
   * Click the **Arrange By** column and select **Conversation**.

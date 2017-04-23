@@ -18,6 +18,8 @@ tags:
 ---
 I've just seen a [blog entry](http://blogs.msdn.com/mitchw/archive/2004/07/06/174412.aspx) about C# generics, concerning C#'s lack of **typedef**s. Actually, C# has a way of aliasing classes, using the **using directive**:
 
+<!--more-->
+
 ```csharp
 using IntList = System.Collections.Generic.List<int>; 
 ```

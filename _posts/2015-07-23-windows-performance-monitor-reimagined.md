@@ -18,6 +18,8 @@ tags:
 ---
 Windows PerfMon is an invaluable tool, but it's UI remained the same for years, stuck somewhere in the 1990's. This is my attempt at &#8220;reimagining&#8221; it.
 
+<!--more-->
+
 Note the edges are still rough (think version 0.1), and it's still missing a lot of features the original tool has. I welcome criticism and ideas; please use GitHub Issues for those.
 
 <https://github.com/aelij/PerformanceMonitor> | [Binaries](https://github.com/aelij/PerformanceMonitor/releases/download/0.1/PerformanceMonitor-0.1.zip)

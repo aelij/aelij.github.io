@@ -16,6 +16,8 @@ tags:
 ---
 I've been toying around with the CTP for a couple of days. There are some very nice stuff to see, and everything seems to be much smoother and faster (_beside the setup_, that is; I tried a clean install &#8211; which took over an hour &#8211; and an upgrade from Windows XP [first available in this CTP] &#8211; which took well over **three hours**&#8230;)
 
+<!--more-->
+
 I have a **very**&nbsp;old display adapter (ATI Rage Fury Pro) which, in earlier builds, was able to run the DCM/DWM (but not very smoothly, naturally.) This time, the registry hacks to get the DWM ignore the incompatibility didn't work. So I ventured on a mission to find where they hid it this time. This is what&nbsp;I came up with (copy and paste into notepad and save as **dwm.reg**):
 
 ```

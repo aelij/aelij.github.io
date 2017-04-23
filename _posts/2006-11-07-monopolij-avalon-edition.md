@@ -16,6 +16,8 @@ tags:
 ---
 <a href="https://arbel.net/attachments/images/49.monopolij.jpg" target="_blank"><img src="https://arbel.net/attachments/images/49.monopolij.jpg" width="160" align="right" border="0" height="115" /></a>First &#8211; great news. [.NET Framework 3.0](http://www.netfx3.com/) has finally been [released](http://www.netfx3.com/blogs/news_and_announcements/archive/2006/11/06/.NET-Framework-3.0-has-been-released_2100_.aspx). Get it now!
 
+<!--more-->
+
 Monopolij was an app I wrote trying to [win](https://arbel.net/blog/archive/2005/08/16/Monopolij_3A00_-PDC_2700_05-Edition.aspx) a free ticket to PDC'05 (you can download it at that post.) It had&nbsp;a special theme, as you can see in the screenshot&#8230; I thought it was a lot of fun to play as Bill. 🙂
 
 So, I've decided to migrate this game to .NET 3.0. It's proving to be quite interesting. I'm going to use WCF for communication (the original version used TcpClient, so there's much work to be done.) This will also enable me to try the peer to peer binding for the first time. Automatic peer discovery is kinda cool.

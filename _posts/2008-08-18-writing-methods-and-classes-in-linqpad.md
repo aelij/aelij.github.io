@@ -18,6 +18,8 @@ tags:
 ---
 [LINQPad](http://www.linqpad.net/) is a very useful code snippet IDE. I use it all the time to test small pieces of code. It's much more convenient than opening a new Visual Studio console application. It also formats the results very nicely.
 
+<!--more-->
+
 What seems to be missing in LINQPad is a way to add methods or classes. After digging a bit with reflector, I came up with a simple way:
 
   * Choose "C# Statement(s)" in the Type drop-down.

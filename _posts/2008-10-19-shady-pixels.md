@@ -16,6 +16,8 @@ tags:
 ---
 In my [previous post](https://arbel.net/blog/archive/2008/09/17/in-the-zune.aspx) I mentioned the new Zune 3.0 visualizations. I really liked them, so I decided to try and create them using WPF's new (3.5 SP1) Effects.
 
+<!--more-->
+
 A while ago I [wrote](https://arbel.net/blog/archive/2007/02/09/bitmapeffect-begone.aspx) about BitmapEffects, and why you should try to avoid them. Effects replace BitmapEffect with an elegant, hardware-accelerated API. An Effect is comprised of a class that derives from ShaderEffect and another file written in [HLSL](http://en.wikipedia.org/wiki/High_Level_Shader_Language) (High Level Shader Language), which is a C derivative. What you're basically writing is a function that receives the coordinates of a pixel and returns a color &#8211; a **pixel shader**. If you want to learn how to write one, I suggest checking out Greg Schechter's [series](http://blogs.msdn.com/greg_schechter/archive/2008/05/09/a-series-on-gpu-based-effects-for-wpf.aspx). You should also have a look at the [WPF Effects Library](https://www.codeplex.com/wpffx), which has a host of ready to use effects, and also shows a great way of using effects to create transitions.
 
 Now, for my Zune mimic. I created two effects: Blend (which blends one element with another) and PointLight (which colorizes an element and adds two light orbs). I also added a few animations to the demo app, which made it look more like Zune. The result is quite pleasant.

@@ -18,6 +18,8 @@ tags:
 ---
 I'm loving the new [Zune 3.0](http://www.zune.net/en-us/products/zunesoftware/) client software. V1 was terrible. Just an ugly version of Windows Media Player. V2 was completely rewritten using a Microsoft internal platform called UIX, which is based on Media Center. Although it's still .NET, I was slightly disappointed they didn't use WPF.
 
+<!--more-->
+
 Anyhow, it's still a great piece of software, very fluent and intuitive, and it looks cool with all sorts of smooth animations. In V3 they added a few nifty features, such as new Now Playing visualizations. It downloads photos and data (such as number of plays) from the web, and performs a very attractive pan, zoom and tint effect on them. Here are a few shots:
 
 [<img style="border-right:0px;border-top:0px;border-left:0px;border-bottom:0px;" height="167" alt="zune_vis1" src="https://arbel.net/attachments/IntheZune_EEF8/zune_vis1_thumb.png" width="244" border="0" />](https://arbel.net/attachments/IntheZune_EEF8/zune_vis1_2.png) [<img style="border-right:0px;border-top:0px;border-left:0px;border-bottom:0px;" height="167" alt="zune_vis2" src="https://arbel.net/attachments/IntheZune_EEF8/zune_vis2_thumb.jpg" width="244" border="0" />](https://arbel.net/attachments/IntheZune_EEF8/zune_vis2_2.jpg) 

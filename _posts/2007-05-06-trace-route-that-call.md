@@ -15,6 +15,8 @@ tags:
 ---
 Have you ever used **EventManager.RegisterClassHandler()**? If so, make sure you know what you're doing. This method allows you to listen to events _passing&nbsp;through_ (as I like to put it) an element (i.e.&nbsp;bubbling or tunneling), regardless of the class that invoked the call. Most of the times you would call it in a static constructor, and pass it a **typeof** of that class, but that is only a _recommendation_. The [documentation](http://msdn2.microsoft.com/en-us/library/ms747183.aspx) is a bit weak on this point.
 
+<!--more-->
+
 This can be a very powerful tool if you use it right. Let me demonstrate. Say you want to listen to all button clicks in your app. Normally you would put this in your main Window (by calling the above method or UIElement.AddHandler() instance method) so all the ButtonBase.Click event would bubble up to the Window and get caught.
 
 But what you can actually do is call the RegisterClassHandler from _anywhere you like_ (it doesn't have to be a static constructor or even&nbsp;a DependencyObject. But remember that every call would add a handler, so beware of multiple registrations!):

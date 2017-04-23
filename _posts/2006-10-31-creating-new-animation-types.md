@@ -21,7 +21,8 @@ tags:
 It's a fairly uncommon scenario to want to animate a type that's not already built into WPF. But when you do, it takes quite a lot of work, mostly hacking it with Reflector to explore this undocumented venue. 
 
 
-  
+ <!--more-->
+ 
 
 
 One day I needed to animate the [CornerRadius](http://windowssdk.msdn.microsoft.com/en-gb/library/system.windows.cornerradius(VS.80).aspx) of a Border. Don't ask me why, it just happened. I was a bit surprised to find out that almost all animations have the (almost) exact same implementation, but no code was shared. Meaning, if you had to create a new one, all the code would have to be copied. 

@@ -17,6 +17,8 @@ tags:
 ---
 You can do really neat things with Bitmap Effects in WPF. Shadow, Bevel, Outer Glow can all have a great impact on how your application looks. But you should be aware that they don't come cheap. They are rendered in **software**, which yields very poor performance. Also, [ClearType is turned off](https://arbel.net/blog/archive/2007/02/02/give-me-back-my-cleartype.aspx) on elements that have them applied, so your text&nbsp;becomes blurry.
 
+<!--more-->
+
 So, what to do?
 
 * **Abstinence**. Now, I'm not really a prude, but in this case, minimizing the use of bitmap effects can significantly improve performance. 

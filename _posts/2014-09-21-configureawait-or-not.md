@@ -16,6 +16,8 @@ tags:
 ---
 When **await**ing tasks in C#, you have the option to configure how the continuation behaves - whether it uses the Synchronization Context or not.
 
+<!--more-->
+
 This can be pretty important, especially when awaiting tasks in code that was initialized from a UI thread, which has a Synchronization Context. Poorly written code can easily result in a deadlock, not to mention a serious perf hit. For example:
 
 ```csharp

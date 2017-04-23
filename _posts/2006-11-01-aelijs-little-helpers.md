@@ -17,6 +17,8 @@ tags:
 
 * These helpers are a extension methods in [WPF Contrib](https://github.com/aelij/WPFContrib).
 
+<!--more-->
+
 ## Dependency Helpers 
 
 ```csharp

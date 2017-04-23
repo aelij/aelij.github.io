@@ -16,6 +16,8 @@ tags:
 ---
 Last month I gave a series of lectures in various campuses around Israel about Windows Phone and Azure.
 
+<!--more-->
+
 The lecture included an introduction to Silverlight, Windows Phone, and a short overview of the Windows Azure Toolkit for Windows Phone.
 
 During August 11-12 there will be a workshop for any student who needs assistance in submitting his app for the contest Microsoft is holding. You can find more details at the [Microsoft Israel Students](http://www.facebook.com/pages/Microsoft-Israel-Students/198910936798883) Facebook page.

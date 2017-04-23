@@ -18,6 +18,8 @@ tags:
 ---
 In WPF, like most UI frameworks,&nbsp;UI elements&nbsp;can only be updated from the thread they were created on.&nbsp;If you do background work, and want to affect the UI from a different thread, you'll have to _dispatch_ it. The Dispatcher class has a CheckAccess() method (which is marked as&nbsp;EditorBrowsableState.Never, making it invisible to intellisense for some reason.)
 
+<!--more-->
+
 Here's how you would normally use it:
 
 ```csharp

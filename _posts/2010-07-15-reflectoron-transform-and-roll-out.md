@@ -17,6 +17,8 @@ tags:
 ---
 A few months ago I've decided to write a Prism tutorial by building a WPF UI for the [.NET Reflector](http://www.red-gate.com/products/reflector/).
 
+<!--more-->
+
 Red Gate, the owner of Reflector, liked the idea so they asked me to write it for their magazine, Simple Talk.
 
 Today the article was published, and you may read it on the Simple Talk website. I hope you enjoy it.

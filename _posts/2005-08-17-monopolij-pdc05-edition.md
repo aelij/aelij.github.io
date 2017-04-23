@@ -19,6 +19,8 @@ tags:
 
 I've posted my &ldquo;<a href="http://channel9.msdn.com/pdc/">PDC 4 Free</a>&rdquo; contest <a href="http://channel9.msdn.com/ShowPost.aspx?PostID=100959">entry</a>. It's a game of Monopoly where you can play as your favorite PDC lecturer (such as Bill Gates :) Wish me luck!
 
+<!--more-->
+
 **Update:** Didn't win. You can download the app below.
 
 Attachment: [Monopolij.rar](https://arbel.net/attachments/Monopolij.rar)

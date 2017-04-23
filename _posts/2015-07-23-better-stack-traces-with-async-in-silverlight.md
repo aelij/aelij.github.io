@@ -15,6 +15,8 @@ tags:
 ---
 I recently found out that using the [Microsoft.Bcl.Async](https://www.nuget.org/packages/Microsoft.Bcl.Async/) package to support async/await in Silverlight has a major downside &#8211; it rethrows exceptions without preserving the stack trace. That's because Silverlight lacks [ExceptionDispatchInfo](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.exceptiondispatchinfo), a mechanism that was added in .NET 4.5 that allows rethrowing exceptions while keeping their stack traces intact.
 
+<!--more-->
+
 So I wrote this this gist to solve the problem:
   
 <https://gist.github.com/aelij/7d37fa3657921cbd9d3d>

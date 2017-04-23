@@ -17,6 +17,8 @@ tags:
 ---
 First of all, you didn't miss part one. Just thought it was a funny [reference](http://en.wikipedia.org/wiki/Terminator_2).
 
+<!--more-->
+
 I'm currently working on a new release of [WPF Contrib](http://codeplex.com/wpfcontrib). In my TaskDialog class, I used a few classes I derived from ItemsControl (which I'm considering deleting in this version, but that's another debate). The reason I created them was so that you could add any item to the ItemsControl and it would be wrapped in some specific ContentControl, such as a Button. But if you added a Button, it would know that it doesn't need wrapping (this is what the IsItemItsOwnContainerOverride() and GetContainerForItemOverride() methods do).
 
 I had three classes which were exactly the same, aside from the type of the ContentControl. Generics would very much fit here, but unfortunately, XAML has a [very limited](http://msdn.microsoft.com/en-us/library/ms750476.aspx) support for it (it seems the new .NET 4.0 XAML stack [will improve](http://channel9.msdn.com/pdc2008/TL36/) this, and much more). As an exercise I decided to try and extend XAML so it will support generics &#8211; on a basic level.

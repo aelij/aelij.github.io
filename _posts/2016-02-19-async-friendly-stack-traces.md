@@ -12,6 +12,8 @@ categories:
 ---
 If you're using async/await a lot (a given nowadays), you may have noticed stack traces are not very readable. For example, this is a 3 async method chain's stack:
 
+<!--more-->
+
 ```
 System.Exception: Crash! Boom! Bang!
 at AsyncFriendlyStackTrace.Test.Example1.<C>d__3.MoveNext() in C:\Source\Repos\AsyncFriendlyStackTrace\src\AsyncFriendlyStackTrace.Test\Example1.cs:line 26

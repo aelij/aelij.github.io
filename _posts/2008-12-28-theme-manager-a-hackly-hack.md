@@ -16,6 +16,8 @@ tags:
 ---
 One of the most popular posts in this blog is the [one](https://arbel.net/blog/archive/2006/11/03/Forcing-WPF-to-use-a-specific-Windows-theme.aspx) explaining how to override the system theme and get the Vista look on non-Vista systems. This is possible because WPF ships with the theme files for all operation systems (well, all Microsoft OSs that WPF works on, i.e. XP, XP Media Center and Vista) and due to the fact that WPF doesn&rsquo;t really use the system resources to get the OS theme, but rather relies on a private implementation of them that resides in the PresentationFramework.{Classic, Luna, Royale, Aero} assemblies.
 
+<!--more-->
+
 The solution offered in the aforementioned post loads a selected theme dictionary from one of these assemblies to the Application resource dictionary. While this is enough to modify the theme for all the built-in controls, you may encounter problems in the following scenarios:
 
   * You&rsquo;re using third-party controls that have their own themes for each of the system themes. Many of these controls have a method of bypassing the system theme. (For example, see the [Theme](http://doc.xceedsoft.com/products/XceedWpfDataGrid/Xceed.Wpf.DataGrid%7EXceed.Wpf.DataGrid.Views.ViewBase%7ETheme.html) property on the Xceed DataGrid.)

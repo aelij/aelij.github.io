@@ -17,6 +17,8 @@ tags:
 ---
 [Pivot](http://www.microsoft.com/silverlight/pivotviewer/) is a Microsoft Silverlight control which can visualize collections of data, filter and sort them in a very appealing manner. To see what I mean, check out the [CodeValue](http://codevalue.net/) Blogs Pivot:
 
+<!--more-->
+
 > [http://codevalue.net/blogspivot/](http://codevalue.net/blogspivot/ "http://codevalue.net/blogspivot/")
 
 This allows you to browse through our blogs, and to filter them by tags, dates and authors.

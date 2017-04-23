@@ -15,6 +15,8 @@ tags:
 ---
 Hosting WCF services in AppFabric has its benefits, but it can cause a lot of pain as well. I was trying to resolve the following error which kept appearing at one of my customers:
 
+<!--more-->
+
 > There is no compatible TransportManager found for URI &#8216;net.pipe://<some address>'. This may be because that you have used an absolute address which points outside of the virtual application, or the binding settings of the endpoint do not match those that have been set by other services or endpoints. Note that all bindings for the same protocol should have same settings in the same application.
 
 Google yielded very little results on this. I knew for a fact the _address_ was in the virtual application, so that only left the _binding settings_. It seems once a transport manager is created for a certain protocol, you **cannot** create another one that differs in these parameters (found [here](http://msdn.microsoft.com/en-us/library/ms733109.aspx)):

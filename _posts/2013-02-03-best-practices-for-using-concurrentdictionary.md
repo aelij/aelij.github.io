@@ -16,6 +16,8 @@ tags:
 ---
 One of the goals in concurrent programming is to reduce contention. Contention is created when two (or more) threads _contend_ for a shared resource. The performance of synchronization mechanisms can vary considerably between contended and uncontended cases.
 
+<!--more-->
+
 The .NET `Monitor` class (used by C#'s `lock` keyword) provides a hybrid synchronization solution that is highly optimized for the uncontended case. When a thread requests a lock for an object that no other threads currently own, the CLR marks this using a few relatively simple processor instructions. However, when another thread requests the same lock, it must be blocked. Only then a kernel wait handle is created, making an expensive user-to-kernel call. It is obvious we should strive for such locks to be as uncontended as possible. Throughout this article, unless otherwise noted, the locks I'll be referring to are `Monitor` locks.
 
 Before .NET 4 when we wanted to synchronize access to a dictionary we could:

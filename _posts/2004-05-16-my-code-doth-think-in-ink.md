@@ -16,4 +16,6 @@ tags:
 ---
 I won 3<sup>rd</sup> prize in the Microsoft &ldquo;**Does Your Code Think In Ink?**&rdquo; contest: [Visual Studio](http://msdn.microsoft.com/vstudio/) .NET 2003 Enterprise Developer and a one year subscription to [PC Magazine](http://pcmag.com/).
 
+<!--more-->
+
 I'm also going to try the [next one](http://www.doesyourappthinkinink.com/). Wish me luck! (c:

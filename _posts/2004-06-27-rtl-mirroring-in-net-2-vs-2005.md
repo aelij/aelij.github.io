@@ -15,6 +15,8 @@ tags:
 ---
 Apparently there's a [new API method](http://weblogs.asp.net/jaybaz_ms/archive/2004/05/27/143329.aspx), **Application.EnableRTLMirroring(),** in the next version of the framework, which is supposed to handle the mirroring in Windows Forms for you.
 
+<!--more-->
+
 There are [rumors](http://www.eweek.com/article2/0,1759,1617343,00.asp?kc=EWRSS03119TX1K0000594) that the VS 2005 beta will be available for download by the end of next week. That would be nice, especially since I need the C# compiler with the generics for my thesis.
 
 &nbsp;

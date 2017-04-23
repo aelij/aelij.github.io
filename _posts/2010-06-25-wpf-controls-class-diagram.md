@@ -16,10 +16,12 @@ tags:
 ---
 I&rsquo;ve prepared a class diagram for my students of main WPF controls, divided into Decorators, Panels, Content Controls and Items Controls. The diagram was generated using the new [Visual Studio 2010 Visualization and Modeling Tools](http://msdn.microsoft.com/en-us/library/57b85fsc.aspx) (with a bit of manual cleanup). 
 
+<!--more-->
+
 I&rsquo;ve also attached an XPS version and the DGML source.
 
 &nbsp;
 
-<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" alt="image" src="https://arbel.net/attachments/images/image_5F00_thumb_5F00_1F91DC37.png" border="0" height="399" width="644" /></a>
+<img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" alt="image" src="https://arbel.net/attachments/Images/image_5F00_thumb_5F00_1F91DC37.png" border="0" height="399" width="644" />
 
 Attachment: [WPF Controls Class Diagram.zip](https://arbel.net/attachments/WPF Controls Class Diagram.zip)

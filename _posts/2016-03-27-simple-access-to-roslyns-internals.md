@@ -14,6 +14,8 @@ categories:
 ---
 TL;DR Just grab the [.snk](https://github.com/dotnet/roslyn/blob/master/build/Strong%20Name%20Keys/RoslynInternalKey.Private.snk) from the Roslyn repo, name your bridge assembly to something from the InternalsVisibleTo (e.g. Roslyn.Hosting.Diagnostics), sign it with the key, and you can access all the internals at compile time, with IntelliSense!
 
+<!--more-->
+
 * * *
 
 &nbsp;

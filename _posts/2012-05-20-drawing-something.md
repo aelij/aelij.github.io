@@ -15,6 +15,8 @@ tags:
 ---
 WPF enables you to develop great looking applications very fast. But sometimes with this rapid approach one can overlook an important aspect - performance. It's very common for developers to look into UI performance last, especially in LOB applications, but performance can have a significant effect on how professional your application is perceived to be.
 
+<!--more-->
+
 While I completely agree with Donald Knuth's famous quote "_premature [optimization](http://en.wikipedia.org/wiki/Program_optimization)_ _is the root of all evil_", there are some cases where you can think of UI performance while developing your app. In this post I wish to examine one of WPF's slightly overlooked but very effective performance optimization - the `Drawing` class.
 
 Many times we need to create gauges or dashboards in our applications, in which we represent some state visually. We can do this using 3rd party control suites that offer gauges and such, but sometimes we need to create something specialized for our application.

@@ -16,6 +16,8 @@ tags:
 
 With Service Fabric SDK v2 this became much simpler. Check out this [SO answer](http://stackoverflow.com/a/34221661/276083) of mine for details.
 
+<!--more-->
+
 * * *
 
 Service Fabric's default communication stack for Reliable Services provides a simple way to enable communications without worrying about protocols, discovery, and much more as we shall see. To use the stack, we need to create a `ServiceRemotingListener`, which implements `ICommunicationListener`, as well as create a service interface:

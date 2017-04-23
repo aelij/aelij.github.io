@@ -17,6 +17,8 @@ tags:
 ---
 One of the new features in .NET 4.0 is **Side-By-Side In-Process** (SxS InProc) execution of older CLRs (e.g. .NET 2.0). Previously, SxS was supported only in different processes. If you look it up, you&rsquo;ll find [these](http://blogs.msdn.com/clrteam/archive/2009/06/03/in-process-side-by-side-part1.aspx) [two](http://blogs.msdn.com/clrteam/archive/2009/06/07/in-process-side-by-side-part-2-common-in-proc-sxs-scenarios.aspx) (yet to be updated) blog posts by the CLR team, an MSDN Magazine [article](http://msdn.microsoft.com/en-us/magazine/ee819091.aspx) as well as [one](http://msdn.microsoft.com/en-us/library/ee518876.aspx) in the MSDN Library. You can get a good review of supported scenarios and some code, but what they all sorely lack is a working sample. (**Update:** There&rsquo;s a new detailed [article](http://blogs.msdn.com/clrteam/archive/2010/06/23/in-proc-sxs-and-migration-quick-start.aspx) from the CLR team.)
 
+<!--more-->
+
 The common scenario for SxS would be a host (such as Outlook) that loads .NET add-ins which are configured to run in different versions of the CLR. In this case, it is sufficient to provide an app.config that would tell the host which .NET version you need. The default COM activation behavior in .NET 4 is to use the CLR version the component was compiled with.
 
 The scenario I&rsquo;ve been trying to solve isn&rsquo;t mentioned in any of these articles; I would like to host a WPF 3.5 control in a WPF 4 application. Why? Because I&rsquo;m using a crucial 3rd party control that unfortunately doesn&rsquo;t work with .NET 4.

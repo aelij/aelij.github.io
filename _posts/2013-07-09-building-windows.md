@@ -12,6 +12,8 @@ categories:
 ---
 I've recently attended Microsoft's [Build](http://buildwindows.com/) conference in San Francisco, and I wanted to share some of my experiences.
 
+<!--more-->
+
 First of all, this was an extremely well organized conference. The Moscone Center in San Francisco is an excellent venue, and everything from registration to sessions went very smoothly.
 
 Both keynotes stressed one major shift for Microsoft: _build faster_. Steve Ballmer talked about a faster release cadence, which was demonstrated by Windows 8.1, Visual Studio 2013 and Windows Azure to name a few. There was also a strong message of _listening_ to customers and _acting_ upon it.

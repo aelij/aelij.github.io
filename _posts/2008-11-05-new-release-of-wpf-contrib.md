@@ -13,7 +13,9 @@ categories:
 tags:
   - WPFContrib
 ---
-I've released a new version of [WPF Contrib](http://codeplex.com/wpfcontrib/) (October 2008, although it's released in November. I changed the release name a few times, so I decided to leave it like that. I'm only late by a few days. 🙂
+I've released a new version of [WPF Contrib](http://codeplex.com/wpfcontrib/) (October 2008, although it's released in November. I changed the release name a few times, so I decided to leave it like that. I'm only late by a few days...
+
+<!--more-->
 
 It contains quite a few fixes and new features. Read about it in the project wiki. There are some breaking changes, which, unlike Microsoft, I can easily make, since I don't really have a huge user base. Although, many of the new features in TaskDialog were motivated by user requests. Many of the new controls and classes already appeared in articles in this blog.
 

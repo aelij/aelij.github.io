@@ -17,6 +17,8 @@ tags:
 ---
 **Update:** This&nbsp;utility has become a bit irrelevant since [Reflector](http://www.aisto.com/roeder/dotnet/) now has a [BAML Viewer](http://www.codeplex.com/reflectoraddins/Wiki/View.aspx?title=BamlViewer&referringTitle=Home) add-in. You can use it to view any assembly containing BAML resources, which it will automatically&nbsp;decompile into XAML.
 
+<!--more-->
+
 Style Snooper (or StyleSnooper?), originally [posted](http://blogs.msdn.com/llobo/archive/2006/07/17/Tool-to-Examine-WPF-control-styles.aspx) by Lester, is a tool that can extract control styles from a compiled assembly. Quite useful to take a peek at someone else's work. 🙂 
 
 I added a couple of features: 

@@ -17,6 +17,8 @@ tags:
 ---
 One of the most referenced posts in this blog is the one dealing with the [ClearType issues](https://arbel.net/blog/archive/2007/02/02/give-me-back-my-cleartype.aspx). Those of you who shared my pain will be glad to hear that Microsoft has delivered on its promise: WPF is getting a new text rendering stack in v4, which has the ability to render ClearType (and even aliased text) in every scenario. The new stack is also supposed to match the GDI text renderer, which means that small text will be much more readable.
 
+<!--more-->
+
 You can [download](http://msdn.microsoft.com/en-us/vstudio/dd582936.aspx) Visual Studio 2010 Beta 2 and give it a try. I'm sure you'll be pleased with the result.
 
 For more information, head on to [this post](http://blogs.msdn.com/text/archive/2009/08/24/wpf-4-0-text-stack-improvements.aspx) at the WPF Text blog.

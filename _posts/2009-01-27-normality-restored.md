@@ -18,6 +18,8 @@ tags:
 ---
 The past 24 hours have been a blogger&rsquo;s nightmare for me. I wanted to upgrade my GoDaddy&rsquo;s hosting account to IIS 7. Unfortunately, they do not have any upgrade option, so you have to call their customer service, cancel your current hosting account, create a new one and build everything from scratch.
 
+<!--more-->
+
 What this means, of course, is that you have to backup your current website yourself. I created a backup of the SQL database, and used FileZilla to transfer all the files to my computer. Now, here&rsquo;s where my stupidity comes in: When FileZilla finished the transfer I assumed all was OK. I quickly browsed the root directory and saw that all the sub directories were there, but I forgot to verify the most important thing: the database backup. It seems the wretched FTP software reports errors into a tab at the bottom, that doesn&rsquo;t even get focus if there were any. Talk about trustful computing.
 
 I realized my grave mistake only after the old account was gone, when I went to upload the website to its new location. I immediately called GoDaddy. It was a matter of minutes since the account was cancelled, yet they informed me that the restore fee would be **$150**! That&rsquo;s how much it costs me to host the entire site for&nbsp; **two years**! I told them I&rsquo;d get back to them.

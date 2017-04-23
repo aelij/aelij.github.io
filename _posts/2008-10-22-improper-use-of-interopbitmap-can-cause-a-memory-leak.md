@@ -17,6 +17,8 @@ tags:
 ---
 I've been using InteropBitmap in my [GdiTextBlock](https://arbel.net/blog/archive/2008/08/18/good-old-gdi-or-unblur-thy-text.aspx). The control creates a new GDI+ Bitmap every measure pass, which it then converts to a WPF BitmapSource using the Imaging.CreateBitmapSourceFromHBitmap() method (this method returns an InteropBitmap).
 
+<!--more-->
+
 After playing with the control for a while I noticed that the process' working set is constantly increasing. I realized I must have a problem with my bitmap conversion. So, I set out to seek an alternative solution, and I came up with a simple way of creating a BitmapSource directly from a GDI+ Bitmap. (See attached. I've also updated the GdiTextBlock post.)
 
 After some more digging, I found out that the leakage was entirely _my fault_. To use the CreateBitmapSourceFromHBitmap() method, you have to convert the GDI+ bitmap to an HBITMAP by calling the Bitmap.GetHbitmap() method. Its documentation clearly states that &#8220;_You are responsible for calling the GDI DeleteObject method to free the memory used by the GDI bitmap object._&#8221; Well, there you have it.
