@@ -18,31 +18,21 @@ When **await**ing tasks in C#, you have the option to configure how the continua
 
 This can be pretty important, especially when awaiting tasks in code that was initialized from a UI thread, which has a Synchronization Context. Poorly written code can easily result in a deadlock, not to mention a serious perf hit. For example:
 
-[sourcecode language=&#8221;csharp&#8221;]
+```csharp
   
 class MyWindow : Window
-  
 {
-    
-private void MyButton_Click(object sender, EventArgs e)
-    
-{
-      
-DoSomething().Wait();
-    
-}
+    private void MyButton_Click(object sender, EventArgs e)
+    {
+        DoSomething().Wait();
+    }
 
-private async Task DoSomething()
-    
-{
-       
-await Task.Run(() => { });
-    
+    private async Task DoSomething()
+    {
+        await Task.Run(() => { });
+    }
 }
-  
-}
-  
-[/sourcecode]
+```  
 
 This is obviously bad, calling Wait() on the UI thread. But it's easy to imagine more subtle ways this could happen inside library code. That's why the best practice is to **always** use **ConfigureAwait(continueOnCapturedContext: false)** in library code. I really wish they'd split that into two separate methods. I also wish they'd made the default to be **false**.
 
