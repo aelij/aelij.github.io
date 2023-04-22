@@ -14,8 +14,7 @@ categories:
   - Uncategorized
 tags:
   - Themes
-  - Windows 2003
-  - Windows Vista
+  - Windows
   - WPF
 ---
 WPF comes with a few theme assemblies, one for each Windows theme (Luna, Royale and Aero and the fallback theme, Classic.) Usually the theme is loaded according to your current system theme, but if you want to create a consistent look for your application, you may want to force-load a specific one. 

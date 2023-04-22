@@ -11,7 +11,7 @@ permalink: /2008/12/28/theme-manager-a-hackly-hack/
 categories:
   - Uncategorized
 tags:
-  - .NET 4
+  - .NET
   - WPF
 ---
 One of the most popular posts in this blog is the [one](https://arbel.net/blog/archive/2006/11/03/Forcing-WPF-to-use-a-specific-Windows-theme.aspx) explaining how to override the system theme and get the Vista look on non-Vista systems. This is possible because WPF ships with the theme files for all operation systems (well, all Microsoft OSs that WPF works on, i.e. XP, XP Media Center and Vista) and due to the fact that WPF doesn&rsquo;t really use the system resources to get the OS theme, but rather relies on a private implementation of them that resides in the PresentationFramework.{Classic, Luna, Royale, Aero} assemblies.

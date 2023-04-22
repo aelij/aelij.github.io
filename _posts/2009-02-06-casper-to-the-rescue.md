@@ -12,8 +12,7 @@ categories:
   - Uncategorized
 tags:
   - ClearType
-  - Windows 7
-  - Windows Vista
+  - Windows
   - WPF
 ---
 WPF has ClearType [issues](https://arbel.net/blog/archive/2007/02/02/give-me-back-my-cleartype.aspx). Hopefully some of them will be solved in the upcoming .NET 4.0. Meanwhile, however, I have concocted a nifty solution to one of the scenarios &ndash; placing stuff on the Aero Glass DWM frame.

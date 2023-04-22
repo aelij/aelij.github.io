@@ -11,7 +11,7 @@ permalink: /2010/06/25/peaceful-coexistence/
 categories:
   - Uncategorized
 tags:
-  - .NET 4
+  - .NET
   - CLR
   - WPF
 ---
