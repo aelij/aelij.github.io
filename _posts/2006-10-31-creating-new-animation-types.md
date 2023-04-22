@@ -72,4 +72,4 @@ Implementers have very few things to do: create an IAnimationCalculator for thei
 
 One last caveat: I did not test this on a type other than CornerRadius. It's quite possible this small framework will not fit every scenario. As I said, the designers of WPF may very well have had a good reason not to take this approach.
 
-**Update:** I've changed the implementation from a calculator type parameter to a `CreateCalculator()` abstract method. This makes my classes slightly more cumbersome, but more importantly, makes writing polymorphic code a lot nicer (consider writing a method that accepts a `LinearAnimationBase`. Why should you have to drag along that&nbsp;_TCalc_ type parameter?)
+**Update:** I've changed the implementation from a calculator type parameter to a `CreateCalculator()` abstract method. This makes my classes slightly more cumbersome, but more importantly, makes writing polymorphic code a lot nicer (consider writing a method that accepts a `LinearAnimationBase`. Why should you have to drag along that _TCalc_ type parameter?)

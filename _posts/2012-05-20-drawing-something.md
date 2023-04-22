@@ -4,7 +4,6 @@ title: Drawing Something?
 date: 2012-05-20T12:38:38+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=243
 permalink: /2012/05/20/drawing-something/
 image: /wp-content/uploads/2012/05/DrawingSomething.png
 categories:
@@ -40,7 +39,7 @@ Usually when we create such controls, we need them to respond to data changes. L
 
 **Important!** When we create a drawing with bindings that is intended to be used multiple times in our application, we must use **`x:Shared=&#8221;False&#8221;`**, so that a new instance would be created each time. Read more about this attribute [here](http://msdn.microsoft.com/en-us/library/aa970778.aspx).
 
-&nbsp;
+ 
 
 ## Demo
 

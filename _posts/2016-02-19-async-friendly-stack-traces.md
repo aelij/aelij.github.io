@@ -4,7 +4,6 @@ title: Async-friendly stack traces
 date: 2016-02-19T09:34:08+00:00
 author: Eli Arbel
 layout: post
-guid: https://arbel.net/?p=641
 permalink: /2016/02/19/async-friendly-stack-traces/
 image: /wp-content/uploads/2016/02/stack.png
 categories:

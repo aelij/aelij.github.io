@@ -20,7 +20,7 @@ I&rsquo;ve prepared a class diagram for my students of main WPF controls, divide
 
 I&rsquo;ve also attached an XPS version and the DGML source.
 
-&nbsp;
+ 
 
 <img style="border-bottom: 0px; border-left: 0px; display: inline; border-top: 0px; border-right: 0px" title="image" alt="image" src="https://arbel.net/attachments/Images/image_5F00_thumb_5F00_1F91DC37.png" border="0" height="399" width="644" />
 

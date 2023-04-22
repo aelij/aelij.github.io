@@ -25,6 +25,6 @@ Today the article was published, and you may read it on the Simple Talk website.
 
 <http://www.simple-talk.com/dotnet/.net-framework/reflectoron-in-prism-a-wpf-mvvm-tutorial/>
 
-&nbsp;
+ 
 
 * My whimsical choice of titles continues; I've decided to name the thing &#8220;Reflectoron&#8221; because it's Reflector + Avalon. It also reminded me of the Transformers, hence the blog post title. 😛

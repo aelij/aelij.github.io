@@ -4,7 +4,6 @@ title: RoslynPad Reloaded
 date: 2015-04-01T21:14:35+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=419
 permalink: /2015/04/01/roslynpad-reloaded/
 dsq_thread_id:
   - "5736700195"
@@ -28,4 +27,4 @@ Download the sources (with the modified Roslyn binaries) from
   
 <https://github.com/aelij/roslynpad>
 
-&nbsp;
+ 

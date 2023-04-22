@@ -4,7 +4,6 @@ title: 'Windows Performance Monitor &#8211; Reimagined'
 date: 2015-07-23T16:31:36+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=433
 permalink: /2015/07/23/windows-performance-monitor-reimagined/
 dsq_thread_id:
   - "5736700296"

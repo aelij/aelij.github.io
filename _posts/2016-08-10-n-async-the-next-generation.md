@@ -4,7 +4,6 @@ title: '*N Async, the next generation'
 date: 2016-08-10T15:28:38+00:00
 author: Eli Arbel
 layout: post
-guid: https://arbel.net/?p=1341
 permalink: /2016/08/10/n-async-the-next-generation/
 image: /wp-content/uploads/2016/03/pAsKfi7B_400x4001.png
 categories:

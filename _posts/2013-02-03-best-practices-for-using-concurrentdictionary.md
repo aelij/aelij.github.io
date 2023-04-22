@@ -4,7 +4,6 @@ title: Best Practices for Using ConcurrentDictionary
 date: 2013-02-03T21:44:22+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=267
 permalink: /2013/02/03/best-practices-for-using-concurrentdictionary/
 dsq_thread_id:
   - "5736700186"
@@ -36,7 +35,7 @@ These approaches suffer from some or all of these problems:
 
 Due to all of these, they do not _scale up_ very well. That means that if we add more CPU cores, we (somewhat counter-intuitively) will not get better performance (and sometimes even worse), because the threads would be busy dealing with the added contention.
 
-&nbsp;
+ 
 
 ## So how does `ConcurrentDictionary` do better?
 
@@ -47,7 +46,7 @@ Due to all of these, they do not _scale up_ very well. That means that if we add
       * You can also specify a fixed concurrency level (i.e. number of locks) via a constructor parameter (but normally you shouldn't as you lose the dynamic growing).
       * Each object is assigned a lock **according to its hash code**. Usually a single lock object is responsible for several buckets.
 
-&nbsp;
+ 
 
 I've adapted a small test program that was used by the authors of an excellent book I'm reading, _Java Concurrency in Practice_, to C#. The tests runs _N_ threads in a tight loop, trying to retrieve a value from the dictionary. If it exists, it attempts to remove it with a probability of 0.02; otherwise it attempts to add it with a probability of 0.6.
 
@@ -55,11 +54,11 @@ You can see the results below (run on an 8-way machine). Concurrent dictionary i
 
 <img style="background-image: none; padding-top: 0px; padding-left: 0px; display: inline; padding-right: 0px; border: 0px;" title="image" alt="image" src="https://arbel.net/wp-content/uploads/2013/02/image.png" width="481" height="271" border="0" />
 
-&nbsp;
+ 
 
 There are, however, a few things to keep in mind when using `ConcurrentDictionary`.
 
-&nbsp;
+ 
 
 ## Acquiring all locks
 
@@ -94,7 +93,7 @@ I've seen too many developers fall into this trap and thus losing nearly all the
 
 Personally, I blame MSDN for not clarifying this further. If you look at the `Count` property remarks, you'll see a vague comment stating that "This property has snapshot semantics". This comment is even missing from some of the other members. Thankfully the developers of .NET's concurrent collections made the situation better by exposing ETW events. So use the Concurrency Visualizer as part of your regular performance testing.
 
-&nbsp;
+ 
 
 ## Value factories are not guaranteed execution protection
 
@@ -104,7 +103,7 @@ If you need to have execution protection, use `Lazy<T>` (i.e. `ConcurrentDiction
 
 If you need to know whether `GetOrAdd` actually added a value, you can use [this implementation](http://blogs.msdn.com/b/pfxteam/archive/2012/02/04/10264111.aspx) from the .NET Parallel Programming team.
 
-&nbsp;
+ 
 
 ## It's not just another `IDictionary<K, V>`
 
@@ -112,7 +111,7 @@ While `ConcurrentDictionary` implements this interface, it is not well-suited fo
 
 If you do choose to expose a dictionary (a questionable move by itself), you probably don't want to hide the fact you're using a concurrent dictionary from your consumers, so they may use it correctly and reap all its benefits.
 
-&nbsp;
+ 
 
 ## Conclusion
 

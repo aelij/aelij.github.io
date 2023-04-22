@@ -4,7 +4,6 @@ title: 'Adding headers and instrumentation to Service Fabric default comm. stack
 date: 2015-12-11T10:31:46+00:00
 author: Eli Arbel
 layout: post
-guid: https://arbel.net/?p=481
 permalink: /2015/12/11/adding-headers-and-instrumentation-to-service-fabrics-default-comm-stack/
 image: /wp-content/uploads/2015/12/partycluster-background1.png
 categories:

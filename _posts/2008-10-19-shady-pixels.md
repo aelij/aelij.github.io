@@ -14,7 +14,7 @@ tags:
   - WPF
   - WPFContrib
 ---
-In my [previous post](https://arbel.net/blog/archive/2008/09/17/in-the-zune.aspx) I mentioned the new Zune 3.0 visualizations. I really liked them, so I decided to try and create them using WPF's new (3.5 SP1) Effects.
+In a previous post I mentioned the new Zune 3.0 visualizations. I really liked them, so I decided to try and create them using WPF's new (3.5 SP1) Effects.
 
 <!--more-->
 
@@ -24,7 +24,7 @@ Now, for my Zune mimic. I created two effects: Blend (which blends one element w
 
 <img src="https://arbel.net/attachments/ShadyPixels_136A9/PointLightDemo_thumb.png" style="border:0px none;" alt="PointLightDemo" width="244" border="0" height="244" />
 
-&nbsp;
+ 
 
 Although I'm quite satisfied with the API, there are a few things that aren't so good:
 

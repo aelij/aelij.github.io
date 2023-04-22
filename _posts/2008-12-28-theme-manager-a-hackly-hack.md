@@ -39,7 +39,7 @@ Needless to say I&rsquo;m using **tons** of reflection and it&rsquo;s likely to 
 
 PS &ndash; A helpful tip for the theme author: you can find the sources (XAML) for all the themes in the Windows SDK samples (look in WPFSamples.zip/Core/{Classic, Luna, Royale, Aero}Theme.)
 
-&nbsp;
+ 
 
 **Update**: Apparently this still works in .NET 4 (as of Beta 2).
 

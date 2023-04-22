@@ -4,7 +4,6 @@ title: The Misbehaving Dialog
 date: 2014-04-23T08:55:23+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=382
 permalink: /2014/04/23/the-misbehaving-dialog/
 image: /wp-content/uploads/2014/04/1398270438_chat-bubble.png
 categories:
@@ -22,7 +21,7 @@ tags:
   * They misbehave if you don't set their parent explicitly (sometimes hiding behind other windows, accessible only via crazy ALT-tabbing)
   * They make that annoying 'ding' sound when you click the containing window ;)
 
-&nbsp;
+ 
 
 ## There's a better way
 
@@ -34,7 +33,7 @@ tags:
   * You can layer dialogs on top of each other
   * You can define multiple scopes in which the dialogs appear
 
-&nbsp;
+ 
 
 **How to use**
 

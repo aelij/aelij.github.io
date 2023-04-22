@@ -30,13 +30,13 @@ Uri uri = new Uri(“PresentationFramework.Aero;V3.0.0.0;31bf3856ad364e35;compon
 Resources.MergedDictionaries.Add(Application.LoadComponent(uri) as ResourceDictionary); 
 ```
 
-It's important to specify the version and the public key token. Otherwise you'll have to copy the theme assembly to the folder of your executable. The reason I'm adding it to the merged dictionaries collection&nbsp;is that I don't want to lose other resources I added to the App.xaml file. 
+It's important to specify the version and the public key token. Otherwise you'll have to copy the theme assembly to the folder of your executable. The reason I'm adding it to the merged dictionaries collection is that I don't want to lose other resources I added to the App.xaml file. 
 
 I usually put this code in a try&hellip;catch block (with an empty catch) since it doesn't really impair the application's functionality if it fails to execute. 
 
 Last note: From my experience, Windows Server 2003 always shows the Classic theme in WPF (even if you activate the Windows Themes service), so if you're deploying applications for that platform, you may want to use this trick (you will also want to turn on your display adapter's hardware acceleration and the DirectX accelerations, as they are disabled by default in 2003.)
 
-**Edit:** Robby Ingebretsen (notstatic.com)&nbsp;also [blogged](http://notstatic.com/archives/56) about this because the new [Zune theme](http://go.microsoft.com/fwlink/?LinkID=75078), which&nbsp;caused WPF to fallback to the Classic theme. However, he placed the code in XAML. Here is a version of that using merged dictionaries (which will allow you to add other resources to App.xaml):
+**Edit:** Robby Ingebretsen (notstatic.com) also [blogged](http://notstatic.com/archives/56) about this because the new [Zune theme](http://go.microsoft.com/fwlink/?LinkID=75078), which caused WPF to fallback to the Classic theme. However, he placed the code in XAML. Here is a version of that using merged dictionaries (which will allow you to add other resources to App.xaml):
 
 
 ```xml

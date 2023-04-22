@@ -4,7 +4,6 @@ title: Processing Raw Input in WPF
 date: 2014-04-09T11:44:17+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=372
 permalink: /2014/04/09/processing-raw-input-in-wpf/
 image: /wp-content/uploads/2014/04/Raw.jpg
 categories:

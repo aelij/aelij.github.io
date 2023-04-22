@@ -6,7 +6,6 @@ author: Eli Arbel
 excerpt: |  
   The first experiment I'm about to present in this post is a simple code editor (similar to the acclaimed LINQPad) that uses two parts of Roslyn: the Script Engine and Completion Service.
 layout: post
-guid: http://arbel.net/?p=284
 permalink: /2013/05/11/roslynpad/
 dsq_thread_id:
   - "5736700289"
@@ -27,13 +26,13 @@ Hacking the [Roslyn](http://msdn.microsoft.com/en-us/vstudio/roslyn.aspx) code h
 
 The first experiment I'm about to present in this post is a simple code editor (similar to the acclaimed LINQPad) that uses two parts of Roslyn: the **Script Engine** and **Completion Service**.
 
-&nbsp;
+ 
 
 ## Script Engine
 
 Used to compile and run pieces of code. You can create sessions in which you continuously add statements to the session, and the engine would interpret them as they come along. This is sometimes referred to as REPL, a read-eval-print loop. Using the ScriptEngine class is extremely straightforward: create an instance, add reference assemblies, import namespaces and then create sessions to evaluate code. You immediately get the result of any expression as an object.
 
-&nbsp;
+ 
 
 ## Completion Service
 
@@ -45,7 +44,7 @@ Using the completion service is slightly more complex: you have to use Roslyn's 
 
 Once you setup a solution, you can use its ILanguageServiceProviderFactory to create an ILanguageServiceProvider for a language of your choice (C#, naturally). From there we can produce the completion service. To get the completion items, we need to pass a document and a position within it, and Roslyn does the rest.
 
-&nbsp;
+ 
 
 ## Editing Code
 
@@ -55,13 +54,13 @@ Roslyn documents use two primary interfaces for dealing with text: ITextContaine
 
 To display the completion results, AvalonEdit includes the CompletionWindow class. It can be filled with ICompletionData items, for which I created a class that wrapped Roslyn's CompletionItem.
 
-&nbsp;
+ 
 
 ## Printing
 
 I've created an extension method for System.Object called "Dump", similarly to LINQPad. I'm using a FlowDocument to format the results, and currently it recursively walks all the public properties of objects and iterates all enumerators. Note that performance can be a problem since it's not done lazily.
 
-&nbsp;
+ 
 
 ## Conclusion
 

@@ -4,7 +4,6 @@ title: To ConfigureAwait or not to ConfigureAwait?
 date: 2014-09-21T14:04:42+00:00
 author: Eli Arbel
 layout: post
-guid: http://arbel.net/?p=390
 permalink: /2014/09/21/configureawait-or-not/
 image: /wp-content/uploads/2014/09/ConfigureAwaitReSharper.png
 categories:
