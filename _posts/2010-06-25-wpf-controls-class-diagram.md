@@ -11,7 +11,6 @@ permalink: /2010/06/25/wpf-controls-class-diagram/
 categories:
   - Uncategorized
 tags:
-  - Modeling
   - WPF
 ---
 I&rsquo;ve prepared a class diagram for my students of main WPF controls, divided into Decorators, Panels, Content Controls and Items Controls. The diagram was generated using the new [Visual Studio 2010 Visualization and Modeling Tools](http://msdn.microsoft.com/en-us/library/57b85fsc.aspx) (with a bit of manual cleanup). 

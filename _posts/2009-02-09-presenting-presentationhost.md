@@ -14,8 +14,7 @@ categories:
   - Uncategorized
 tags:
   - ClearType
-  - Windows 7
-  - Windows Vista
+  - Windows
   - WPF
 ---
 I always prefer simpler solutions. The solution I proposed on my [previous post](https://arbel.net/blog/archive/2009/02/06/casper-to-the-rescue.aspx) was not that simple, and was not complete. It may still be useful for other stuff, but for the purpose of preserving ClearType while using DWM, I just have to admit it has too many issues.
