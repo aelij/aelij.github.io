@@ -1,4 +1,4 @@
-# I Got Rhythm (arbel.net)
+# arbel.net
 
 ## Theme
 
