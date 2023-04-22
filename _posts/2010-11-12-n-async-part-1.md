@@ -11,7 +11,6 @@ permalink: /2010/11/12/n-async-part-1/
 tags:
   - Async
   - 'C#'
-  - Experiments
 ---
 You've all read about the asynchrony promise of C# 5 (if you haven't, I highly recommend reading Eric Lippert's [series](http://blogs.msdn.com/b/ericlippert/archive/tags/c_2300_+5-0/) about the subject or this post won't make much sense). I think it's a great step forward, and it would make asynchronous programming all a lot easier.
 
