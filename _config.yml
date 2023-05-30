@@ -1,6 +1,6 @@
 title: Eli Arbel
 email: aelij@arbel.net
-description: A blog by Eli (Aelij) Arbel
+description: A blog by Eli Arbel (aelij)
 url: "https://arbel.net"
 
 encoding: utf-8
@@ -8,7 +8,7 @@ encoding: utf-8
 twitter_username: aelij
 github_username: aelij
 linkedin_username: aelij
-mastodon_username: mastodon.social/@aelij
+mastodon_username: tech.lgbt/@aelij
 
 highlighter: rouge
 markdown: kramdown
@@ -25,4 +25,3 @@ gems:
    - jekyll-mentions
    - jekyll-redirect-from
    - jekyll-feed
-
