@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Mount Arbel's cliff over the Kinneret, drawn as an A -->
+  <style>.t{fill:#127278}.w{fill:#5cc5c0}.m{fill:#fffefb}@media (prefers-color-scheme:dark){.t{fill:#5cc5c0}.w{fill:#127278}.m{fill:#121416}}</style>
+  <rect class="t" width="32" height="32" rx="7"/>
+  <path class="w" d="M0 25H32A7 7 0 0 1 25 32H7A7 7 0 0 1 0 25Z"/>
+  <path class="m" d="M2 25 18.5 4 20.8 15 27.5 25H21.76L18.08 19.5 16.81 13.45 7.74 25Z"/>
+</svg>
