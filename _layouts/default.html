@@ -1,0 +1,35 @@
+{%- assign home = false -%}{%- if page.url == "/" %}{% assign home = true %}{% endif -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 }}">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="me" href="{{ site.mastodon_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap">
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="{{ site.title }}">
+</head>
+<body>
+  <div class="banner{% if home %} banner-tall{% endif %}" aria-hidden="true">
+    <img src="/assets/images/hero-1200.webp" srcset="/assets/images/hero-1200.webp 1200w, /assets/images/hero-2400.webp 2400w" sizes="100vw" alt="">
+  </div>
+  {%- unless home %}
+  <header class="site-header">
+    <a class="wordmark" href="/">{% include icon.html name="back" %}{{ site.title }}</a>
+    <nav class="icon-links">{% include links.html %}</nav>
+  </header>
+  {%- endunless %}
+  {{ content }}
+  <footer class="site-footer">
+    © {{ site.time | date: "%Y" }} {{ site.title }}
+  </footer>
+</body>
+</html>

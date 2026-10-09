@@ -1,0 +1,12 @@
+- name: RoslynPad
+  url: https://roslynpad.net
+  description: Cross-platform C# editor built on Roslyn
+  icon: code
+- name: IgnoresAccessChecksToGenerator
+  url: https://github.com/aelij/IgnoresAccessChecksToGenerator
+  description: Compile-time access to internals without reflection
+  icon: unlock
+- name: Spanify
+  url: https://github.com/aelij/spanify
+  description: Patterns for high-performance C#
+  icon: zap

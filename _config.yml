@@ -1,0 +1,19 @@
+title: Eli Arbel
+description: Principal Software Engineer at Microsoft
+url: "https://arbel.net"
+
+github_username: aelij
+linkedin_username: aelij
+stackoverflow_url: https://stackoverflow.com/users/276083/eli-arbel
+mastodon_url: https://dotnet.social/@aelij
+
+highlighter: rouge
+markdown: kramdown
+excerpt_separator: <!--more-->
+permalink: /:year/:month/:day/:title/
+
+exclude: [.gitignore, CNAME, README.md, Gemfile, Gemfile.lock]
+
+plugins:
+  - jekyll-redirect-from
+  - jekyll-feed

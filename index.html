@@ -1,0 +1,46 @@
+---
+layout: default
+---
+<main class="home">
+  <header class="intro">
+    <h1>{{ site.title }}</h1>
+    <p class="tagline">{{ site.description }}</p>
+    <nav class="pill-links">{% include links.html %}</nav>
+  </header>
+
+  <section>
+    <h2>{% include icon.html name="repo" %}Open source</h2>
+    <ul class="cards">
+      {%- for project in site.data.projects %}
+      <li>
+        <a class="card" href="{{ project.url }}">
+          <span class="badge">{% include icon.html name=project.icon %}</span>
+          <span class="card-body">
+            <span class="card-title">{{ project.name }}</span>
+            <span class="card-text">{{ project.description }}</span>
+          </span>
+          <span class="go">{% include icon.html name="arrow" %}</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+
+  <section>
+    <h2>{% include icon.html name="pen" %}Selected writing</h2>
+    <ul class="cards">
+      {%- assign featured = site.posts | where_exp: "p", "p.featured" | sort: "featured" %}
+      {%- for post in featured %}
+      <li>
+        <a class="card writing" href="{{ post.url }}">
+          <span class="card-body">
+            <span class="card-title">{{ post.title }}</span>
+            <span class="card-text">{{ post.excerpt | strip_html | normalize_whitespace | truncatewords: 26 }}</span>
+          </span>
+          <span class="go">{% include icon.html name="arrow" %}</span>
+        </a>
+      </li>
+      {%- endfor %}
+    </ul>
+  </section>
+</main>
